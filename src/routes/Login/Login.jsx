@@ -5,13 +5,13 @@ export default function Login() {
         <h3>Login</h3>
         <section>
           <div className="form-field username-form-field">
-            <label for="name">
+            <label htmlFor="name">
               <h5>Name</h5>
             </label>
             <input type="text" placeholder="Name" required></input>
           </div>
           <div className="form-field password-form-field">
-            <label for="password">
+            <label htmlFor="password">
               <h5>Password</h5>
             </label>
             <input type="password" placeholder="Password" required></input>
