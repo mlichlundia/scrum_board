@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.active-route {
+  color: green;
+}
+
+.inactive-route {
+  color: black;
+}
