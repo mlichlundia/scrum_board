@@ -1,9 +1,12 @@
 import './App.css'
 import { NavLink, Link, Outlet } from 'react-router-dom'
+import { useState } from 'react'
 import AddShortcut from './buttons/AddShortcut/AddShortcut'
 import Switcher from './buttons/Switcher/Switcher'
 
 function App() {
+  const [togglePosition, setTogglePosition] = useState(false)
+
   return (
     <div className="App">
       <div className="switcher">
@@ -15,6 +18,9 @@ function App() {
           <li className="menu__point">
             <NavLink
               to="/task-board"
+              onClick={() => {
+                setTogglePosition('menu__toggle')
+              }}
               className={({ isActive }) =>
                 isActive ? 'active-route' : 'inactive-route'
               }
@@ -32,12 +38,16 @@ function App() {
                   fill="currentcolor"
                 />
               </svg>
+              <div className={togglePosition}></div>
               Task Board
             </NavLink>
           </li>
           <li className="menu__point">
             <NavLink
               to="/description"
+              onClick={() => {
+                setTogglePosition('menu__toggle menu__toggle_bottom')
+              }}
               className={({ isActive }) =>
                 isActive ? 'active-route' : 'inactive-route'
               }

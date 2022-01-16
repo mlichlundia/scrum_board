@@ -38,23 +38,13 @@ hr {
   display: flex;
   align-items: center;
   margin: 0 0 1.5rem;
-  transition: 0.5s;
-}
-
-.menu a:hover {
-  color: var(--text);
 }
 
 .menu__icon {
   margin-right: 0.75rem;
 }
 
-.active-route {
-  color: var(--blue700);
-}
-
-.active-route:before {
-  content: '';
+.menu__toggle {
   width: 0.125rem;
   height: 1.5rem;
   background: var(--blue700);
@@ -62,10 +52,23 @@ hr {
   border-bottom-right-radius: 0.125rem;
   position: absolute;
   left: -2rem;
+  transition: 0.4s;
+}
+
+.menu__toggle_bottom {
+  transform: translateY(3rem);
+}
+
+.active-route {
+  color: var(--blue700);
 }
 
 .inactive-route {
   color: var(--gray400);
+}
+
+.inactive-route:hover {
+  color: var(--gray600);
 }
 
 .auth {
