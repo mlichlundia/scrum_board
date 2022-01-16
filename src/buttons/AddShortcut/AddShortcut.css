@@ -1,0 +1,16 @@
+.addLink {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150%;
+  background: none;
+  border: none;
+  color: var(--gray400);
+}
+
+.addLink__icon {
+  margin: 0 0.75rem 0 0;
+}

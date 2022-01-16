@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import './Register.css'
 import { API_BASE_URL } from '../../constants/api.const'
 
 export default function Registartion() {
@@ -31,20 +32,19 @@ export default function Registartion() {
   }
 
   return (
-    <div>
+    <main>
       <form
         method="post"
         autoComplete="on"
-        className="form registartion_"
+        className="form"
         onSubmit={handleSubmit}
       >
-        <h3>Registration</h3>
+        <h1 className="header">Registration</h1>
         <section>
           <div className="form-field username-form-field">
-            <label htmlFor="username">
-              <h5>Name</h5>
-            </label>
+            <label htmlFor="username"></label>
             <input
+              className="input"
               name="username"
               type="text"
               placeholder="Name"
@@ -53,10 +53,9 @@ export default function Registartion() {
             ></input>
           </div>
           <div className="form-field password-form-field">
-            <label htmlFor="password">
-              <h5>Password</h5>
-            </label>
+            <label htmlFor="password"></label>
             <input
+              className="input"
               name="password"
               type="password"
               placeholder="Password"
@@ -66,9 +65,11 @@ export default function Registartion() {
           </div>
         </section>
         <section>
-          <button type="submit">Sign Up</button>
+          <button className="form__button" type="submit">
+            Sign Up
+          </button>
         </section>
       </form>
-    </div>
+    </main>
   )
 }

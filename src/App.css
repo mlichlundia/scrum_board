@@ -1,11 +1,88 @@
 .App {
-  text-align: center;
+  display: flex;
+}
+
+main {
+  padding: 2rem 3rem 3rem 23rem;
+}
+
+nav {
+  position: absolute;
+  height: calc(100% - 1rem * 2);
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+  background-color: var(--white);
+  border-radius: var(--radius-8);
+  padding: 2rem;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--gray100);
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.menu__point {
+  position: relative;
+}
+.menu a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin: 0 0 1.5rem;
+  transition: 0.5s;
+}
+
+.menu a:hover {
+  color: var(--text);
+}
+
+.menu__icon {
+  margin-right: 0.75rem;
 }
 
 .active-route {
-  color: green;
+  color: var(--blue700);
+}
+
+.active-route:before {
+  content: '';
+  width: 0.125rem;
+  height: 1.5rem;
+  background: var(--blue700);
+  border-top-right-radius: 0.125rem;
+  border-bottom-right-radius: 0.125rem;
+  position: absolute;
+  left: -2rem;
 }
 
 .inactive-route {
-  color: black;
+  color: var(--gray400);
+}
+
+.auth {
+  color: var(--gray300);
+}
+
+.auth__route {
+  color: var(--blue700);
+  padding: 0 0.4rem;
+}
+
+.auth__route:hover {
+  color: var(--blue900);
+}
+
+.switcher {
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
 }

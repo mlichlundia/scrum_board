@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import './Login.css'
 import { API_BASE_URL } from '../../constants/api.const'
 
 export default function Login() {
@@ -16,7 +17,7 @@ export default function Login() {
       .then((res) => {
         console.log(res)
         sessionStorage.setItem('token', res.data.access_token)
-        console.log(sessionStorage)
+        console.log(sessionStorage.getItem('token'))
         alert('Все хорошо')
       })
       .catch((err) => {
@@ -31,20 +32,19 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <main>
       <form
         method="post"
         autoComplete="on"
-        className="form login"
+        className="form"
         onSubmit={handleSubmit}
       >
-        <h3>Login</h3>
+        <h1 className="header">Login</h1>
         <section>
-          <div className="form-field username-form-field">
-            <label htmlFor="username">
-              <h5>Name</h5>
-            </label>
+          <div>
+            <label htmlFor="username"></label>
             <input
+              className="input"
               name="username"
               type="text"
               placeholder="Name"
@@ -52,11 +52,10 @@ export default function Login() {
               required
             ></input>
           </div>
-          <div className="form-field password-form-field">
-            <label htmlFor="password">
-              <h5>Password</h5>
-            </label>
+          <div>
+            <label htmlFor="password"></label>
             <input
+              className="input"
               name="password"
               type="password"
               placeholder="Password"
@@ -66,9 +65,11 @@ export default function Login() {
           </div>
         </section>
         <section>
-          <button type="submit">Log In</button>
+          <button className="form__button" type="submit">
+            Log In
+          </button>
         </section>
       </form>
-    </div>
+    </main>
   )
 }
