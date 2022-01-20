@@ -16,7 +16,7 @@ export default function AddShortcut() {
           fill="currentcolor"
         />
       </svg>
-      Add Shortcut
+      <h4>Add Shortcut</h4>
     </button>
   )
 }

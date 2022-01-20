@@ -39,7 +39,7 @@ export default function Login() {
         className="form"
         onSubmit={handleSubmit}
       >
-        <h1 className="header">Login</h1>
+        <h1 className="auth-header">Login</h1>
         <section>
           <div>
             <label htmlFor="username"></label>
@@ -66,7 +66,7 @@ export default function Login() {
         </section>
         <section>
           <button className="form__button" type="submit">
-            Log In
+            <p1>Log In</p1>
           </button>
         </section>
       </form>

@@ -8,6 +8,7 @@ import TaskBoard from './routes/TaskBoard/TaskBoard'
 import Description from './routes/Description/Description'
 import Register from './routes/Register/Register'
 import Login from './routes/Login/Login'
+import PageNotFound from './routes/PageNotFount/PageNotFound'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Route path="description" element={<Description />}></Route>
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
+        <Route path="*" element={<PageNotFound />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,

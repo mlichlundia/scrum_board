@@ -1,0 +1,13 @@
+.button-create-column {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.6875rem;
+  border: none;
+  border-radius: var(--radius-8);
+  color: var(--gray400);
+  background: var(--gray100-50);
+}
+
+.button-create-column:hover {
+  background: var(--gray100);
+}

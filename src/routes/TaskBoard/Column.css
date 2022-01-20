@@ -1,0 +1,15 @@
+.column {
+  display: block;
+  min-width: 18.75rem;
+}
+.column__header {
+  position: sticky;
+  top: 0;
+  padding: 0 0 1rem;
+  color: var(--gray400);
+  background: #f8f8fa;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

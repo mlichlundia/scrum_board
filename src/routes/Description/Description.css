@@ -1,0 +1,7 @@
+.main-content {
+  display: block;
+}
+
+.text {
+  color: var(--gray500);
+}

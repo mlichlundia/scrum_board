@@ -1,0 +1,12 @@
+.button-delete-column {
+  color: var(--gray300);
+  background: none;
+  border: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0 0.75rem 0 0;
+}
+
+.button-delete-column:hover {
+  color: #e00909;
+}

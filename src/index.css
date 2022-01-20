@@ -43,6 +43,7 @@ h1 {
   line-height: 130%;
   font-weight: 500;
   margin: 0;
+  padding: 0;
 }
 
 h2 {
@@ -50,14 +51,17 @@ h2 {
   line-height: 150%;
   font-weight: 500;
   margin: 0;
+  padding: 0;
 }
 
 h3 {
   font-size: 1rem;
   line-height: 170%;
   font-weight: 300;
-  letter-spacing: 5%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin: 0;
+  padding: 0;
 }
 
 h4 {
@@ -65,6 +69,7 @@ h4 {
   line-height: 150%;
   font-weight: 500;
   margin: 0;
+  padding: 0;
 }
 
 h5 {
@@ -72,41 +77,55 @@ h5 {
   line-height: 150%;
   font-weight: 500;
   margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
 }
 
 p1 {
+  margin: 0;
   font-size: 1rem;
   line-height: 130%;
   font-weight: 500;
 }
 
 p2 {
+  margin: 0;
   font-size: 0.875rem;
   line-height: 150%;
   font-weight: 500;
 }
 
 p3 {
+  margin: 0;
   font-size: 0.875rem;
   line-height: 150%;
   font-weight: 400;
 }
 
 p4 {
+  margin: 0;
   font-size: 0.75rem;
   line-height: 130%;
   font-weight: 500;
 }
 
 p5 {
+  margin: 0;
   font-size: 0.75rem;
   line-height: 150%;
   font-weight: 400;
 }
 
 button,
-a {
+a,
+input {
   font-family: inherit;
-  transition: 0.5s;
   cursor: pointer;
+  transition: 0.5s;
 }

@@ -1,0 +1,19 @@
+.button-create-task {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray400);
+  background: var(--gray100-50);
+  border: none;
+  border-radius: var(--radius-8);
+  width: 100%;
+}
+
+.button-create-task:hover {
+  background: var(--gray100);
+}
+
+.button-create-task__icon {
+  margin: 0 0 0 0.625rem;
+}

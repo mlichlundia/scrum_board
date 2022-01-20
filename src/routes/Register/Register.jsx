@@ -39,7 +39,7 @@ export default function Registartion() {
         className="form"
         onSubmit={handleSubmit}
       >
-        <h1 className="header">Registration</h1>
+        <h1 className="auth-header">Registration</h1>
         <section>
           <div className="form-field username-form-field">
             <label htmlFor="username"></label>
@@ -66,7 +66,7 @@ export default function Registartion() {
         </section>
         <section>
           <button className="form__button" type="submit">
-            Sign Up
+            <p1>Sign Up</p1>
           </button>
         </section>
       </form>
