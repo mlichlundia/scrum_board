@@ -47,7 +47,7 @@ export default function Registartion() {
               className="input"
               name="username"
               type="text"
-              placeholder="Name"
+              placeholder="Username"
               onChange={handleChange}
               required
             ></input>

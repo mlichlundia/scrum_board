@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { API_BASE_URL } from '../../constants/api.const'
 
@@ -7,6 +8,7 @@ export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  let navigate = useNavigate()
   function handleSubmit(e) {
     e.preventDefault()
     axios
@@ -15,14 +17,14 @@ export default function Login() {
         password,
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         sessionStorage.setItem('token', res.data.access_token)
-        console.log(sessionStorage.getItem('token'))
-        alert('Все хорошо')
+        // console.log(sessionStorage.getItem('token'))
+        navigate('/task-board')
       })
       .catch((err) => {
-        console.error(err)
-        alert('Все плохо')
+        if (err === 401) alert('This user doesn`t exist')
+        console.log(err)
       })
   }
   function handleChange(e) {
@@ -47,7 +49,7 @@ export default function Login() {
               className="input"
               name="username"
               type="text"
-              placeholder="Name"
+              placeholder="Username"
               onChange={handleChange}
               required
             ></input>

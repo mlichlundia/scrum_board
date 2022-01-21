@@ -112,7 +112,7 @@ function App() {
                 </svg>
               </MenuPoint> */}
               <NavLink
-                activeOnlyWhenExact={true}
+                // activeOnlyWhenExact={true}
                 to="/task-board"
                 // onClick={moveAnchor}
                 className={({ isActive }) =>
