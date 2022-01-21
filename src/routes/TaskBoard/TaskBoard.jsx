@@ -1,11 +1,14 @@
 import './TaskBoard.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Column from './Column'
 import Task from './Task'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
+import PopUpCol from './PopUpCol'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
+  const [isPopUpActive, setIsPopUpActive] = useState(false)
+
   return (
     <main className="main-content">
       <header className="header">
@@ -51,7 +54,11 @@ export default function TaskBoard() {
           <Task />
           <Task />
         </Column>
-        <CreateColumn className="button-create-column" />
+        <CreateColumn
+          setActive={setIsPopUpActive}
+          className="button-create-column"
+        />
+        <PopUpCol active={isPopUpActive} setActive={setIsPopUpActive} />
       </section>
     </main>
   )

@@ -1,8 +1,9 @@
 import './CreateColumn.css'
+// import PopUp from '../../routes/TaskBoard/PopUp'
 
-export default function CreateColumn() {
+export default function CreateColumn({ setActive }) {
   return (
-    <button className="button-create-column">
+    <button className="button-create-column" onClick={() => setActive(true)}>
       <svg
         width="15"
         height="15"
