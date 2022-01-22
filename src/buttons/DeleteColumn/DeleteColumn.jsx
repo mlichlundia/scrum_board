@@ -1,8 +1,33 @@
+import axios from 'axios'
+import { API_BASE_URL } from '../../constants/api.const'
+
 import './DeleteColumn.css'
 
-export default function DeleteColumn() {
+export default function DeleteColumn({ title, id, setColData, colData }) {
+  function handleClick(id) {
+    axios
+      .put(
+        `${API_BASE_URL}/columns`,
+        {
+          id: id,
+          title: title,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        },
+      )
+      .then(setColData((cols) => cols.filter((col) => col.id !== id)))
+  }
   return (
-    <button className="button-delete-column">
+    <button
+      className="button-delete-column"
+      onClick={() => {
+        handleClick(id)
+      }}
+      onMouseEnter={() => console.log(title)}
+    >
       <svg
         width="18"
         height="18"

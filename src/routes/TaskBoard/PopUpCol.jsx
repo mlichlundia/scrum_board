@@ -3,10 +3,9 @@ import { useState } from 'react'
 import { API_BASE_URL } from '../../constants/api.const'
 import './PopUpCol.css'
 
-export default function PopUp({ active, setActive }) {
+export default function PopUp({ active, setActive, colData, setColData }) {
   const [value, setValue] = useState('')
   function save() {
-    console.log(sessionStorage.getItem('token'))
     axios
       .post(
         `${API_BASE_URL}/columns`,
@@ -19,7 +18,12 @@ export default function PopUp({ active, setActive }) {
           },
         },
       )
-      .then((res) => alert('add column'))
+      .then((res) => {
+        console.log(res.data.id)
+        setColData([...colData, { id: res.data.id, title: res.data.title }])
+        setValue('')
+        setActive(false)
+      })
       .catch((err) => {
         console.error(err)
         if (err.response.status === 400) {

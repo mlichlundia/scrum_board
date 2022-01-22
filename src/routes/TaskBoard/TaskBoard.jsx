@@ -11,6 +11,7 @@ export default function TaskBoard() {
   const [isPopUpColActive, setIsPopUpColActive] = useState(false)
   const [isPopUpTaskActive, setIsPopUpTaskActive] = useState(false)
 
+  const [colData, setColData] = useState([])
   return (
     <main className="main-content">
       <header className="header">
@@ -40,15 +41,7 @@ export default function TaskBoard() {
         <Column
           setActive={setIsPopUpTaskActive}
           className="column"
-          name={'Status of the Tasks'}
-        >
-          <Task />
-          <Task />
-        </Column>
-        <Column
-          setActive={setIsPopUpTaskActive}
-          className="column"
-          name={'Status of the Tasks'}
+          title={'Status of the Tasks'}
         >
           <Task />
           <Task />
@@ -56,27 +49,27 @@ export default function TaskBoard() {
           <Task />
           <Task />
         </Column>
-        <Column
-          setActive={setIsPopUpTaskActive}
-          className="column"
-          name={'Status of the Tasks'}
-        >
-          <Task />
-          <Task />
-        </Column>
-        <Column
-          setActive={setIsPopUpTaskActive}
-          className="column"
-          name={'Status of the Tasks'}
-        >
-          <Task />
-          <Task />
-        </Column>
+
+        {colData.map((col) => (
+          <Column
+            className="colunm"
+            setActive={setIsPopUpTaskActive}
+            setColData={setColData}
+            colData={colData}
+            title={col.title}
+            id={col.id}
+          />
+        ))}
         <CreateColumn
           setActive={setIsPopUpColActive}
           className="button-create-column"
         />
-        <PopUpCol active={isPopUpColActive} setActive={setIsPopUpColActive} />
+        <PopUpCol
+          active={isPopUpColActive}
+          setActive={setIsPopUpColActive}
+          colData={colData}
+          setColData={setColData}
+        />
         <PopUpTask
           active={isPopUpTaskActive}
           setActive={setIsPopUpTaskActive}
