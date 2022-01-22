@@ -27,32 +27,22 @@
   margin: 0 0 1rem;
 }
 
-.options__button {
+.option__button {
   top: 1.75rem;
   right: 1.25rem;
-}
-
-.task__button-expand-desctiption {
-  bottom: 0.25rem;
-  transform: rotate(180deg);
-}
-
-.task__description {
-  color: var(--text);
-}
-.options__button,
-.task__button-expand-desctiption {
   position: absolute;
   display: flex;
   padding: 0;
   background: none;
   border: none;
   color: var(--gray300);
+}
+
+.option__button.hide {
   visibility: hidden;
   opacity: 0;
 }
 
-.options__button:hover,
-.task__button-expand-desctiption:hover {
+.option__button:hover {
   color: var(--gray500);
 }

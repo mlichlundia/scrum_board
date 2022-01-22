@@ -1,0 +1,24 @@
+.pop-up__textarea {
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  width: 100%;
+  resize: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--gray100-50);
+  border-radius: var(--radius-6);
+  outline: none;
+  transition: 0.5s;
+  margin: 0 0 1rem;
+  color: var(--black);
+}
+
+.pop-up__textarea::placeholder {
+  color: var(--gray200);
+  font-weight: 300;
+}
+
+.pop-up__textarea:focus {
+  border: 1px solid var(--gray200);
+  padding: 0.5rem 0.75rem;
+}

@@ -4,10 +4,12 @@ import Column from './Column'
 import Task from './Task'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
 import PopUpCol from './PopUpCol'
+import PopUpTask from './PopUpTask'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
-  const [isPopUpActive, setIsPopUpActive] = useState(false)
+  const [isPopUpColActive, setIsPopUpColActive] = useState(false)
+  const [isPopUpTaskActive, setIsPopUpTaskActive] = useState(false)
 
   return (
     <main className="main-content">
@@ -35,30 +37,50 @@ export default function TaskBoard() {
         </label>
       </header>
       <section className="tasks">
-        <Column className="column" name={'Status of the Tasks'}>
+        <Column
+          setActive={setIsPopUpTaskActive}
+          className="column"
+          name={'Status of the Tasks'}
+        >
           <Task />
           <Task />
         </Column>
-        <Column className="column" name={'Status of the Tasks'}>
+        <Column
+          setActive={setIsPopUpTaskActive}
+          className="column"
+          name={'Status of the Tasks'}
+        >
           <Task />
           <Task />
           <Task />
           <Task />
           <Task />
         </Column>
-        <Column className="column" name={'Status of the Tasks'}>
+        <Column
+          setActive={setIsPopUpTaskActive}
+          className="column"
+          name={'Status of the Tasks'}
+        >
           <Task />
           <Task />
         </Column>
-        <Column className="column" name={'Status of the Tasks'}>
+        <Column
+          setActive={setIsPopUpTaskActive}
+          className="column"
+          name={'Status of the Tasks'}
+        >
           <Task />
           <Task />
         </Column>
         <CreateColumn
-          setActive={setIsPopUpActive}
+          setActive={setIsPopUpColActive}
           className="button-create-column"
         />
-        <PopUpCol active={isPopUpActive} setActive={setIsPopUpActive} />
+        <PopUpCol active={isPopUpColActive} setActive={setIsPopUpColActive} />
+        <PopUpTask
+          active={isPopUpTaskActive}
+          setActive={setIsPopUpTaskActive}
+        />
       </section>
     </main>
   )

@@ -1,8 +1,8 @@
 import './CreateTask.css'
 
-export default function CreateTask() {
+export default function CreateTask({ setActive }) {
   return (
-    <button className="button-create-task">
+    <button className="button-create-task" onClick={() => setActive(true)}>
       <p1>Create Task</p1>
       <svg
         className="button-create-task__icon"

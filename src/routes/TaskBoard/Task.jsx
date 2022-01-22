@@ -1,15 +1,22 @@
 import './Task.css'
+import { useState } from 'react'
 
 export default function Task() {
+  const [option, setOption] = useState('option__button hide')
+
   return (
-    <div className="task">
+    <div
+      className="task"
+      onMouseEnter={() => setOption('option__button')}
+      onMouseLeave={() => setOption('option__button hide')}
+    >
       <div className="main-content">
         <header className="task__header">
           <h5>My first Task</h5>
         </header>
-        <button className="options__button">
+        <button className={option}>
           <svg
-            className="options__icon"
+            className="option__icon"
             width="20"
             height="20"
             viewBox="0 0 20 20"
@@ -28,33 +35,6 @@ export default function Task() {
           industry.
         </p5>
       </div>
-      <button className="task__button-expand-desctiption">
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_82_159)">
-            <path
-              d="M11.4 8.3999L6.00003 2.9999L0.600025 8.3999"
-              stroke="currentcolor"
-              stroke-linecap="round"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_82_159">
-              <rect
-                width="12"
-                height="12"
-                fill="white"
-                transform="translate(12 12) rotate(-180)"
-              />
-            </clipPath>
-          </defs>
-        </svg>
-      </button>
     </div>
   )
 }
