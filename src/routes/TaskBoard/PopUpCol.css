@@ -26,30 +26,21 @@
   padding: 2rem;
   border-radius: var(--radius-8);
   box-shadow: var(--pop-up);
-}
-
-.pop-up__title {
-  color: var(--gray500);
-  margin: 0 0 0.75rem;
+  width: 32rem;
 }
 
 .pop-up__input {
   font-size: 1.25rem;
   font-weight: 500;
   width: 100%;
-  border: 1px solid var(--white);
   border-radius: var(--radius-6);
   outline: none;
   color: var(--black);
-  padding: 0.5rem 0.5rem 0.5rem 0;
   margin: 0 0 1rem;
-}
-
-.pop-up__input:hover {
   border: 1px solid var(--gray100-50);
-
   padding: 0.5rem 0.75rem;
 }
+
 .pop-up__input:focus {
   border: 1px solid var(--gray200);
   padding: 0.5rem 0.75rem;

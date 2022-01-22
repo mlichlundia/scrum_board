@@ -2,16 +2,17 @@ import './Column.css'
 import CreateTask from '../../buttons/CreateTask/CreateTask.jsx'
 import DeleteColumn from '../../buttons/DeleteColumn/DeleteColumn.jsx'
 
-export default function Column(props) {
+export default function Column({ name, children, setActive }) {
+  // console.log(setActive)
   return (
     <div className="column">
       <h3 className="column__header">
         <DeleteColumn className="button-delete" />
-        {props.name}
+        {name}
       </h3>
-      <div className="colunm-content">{props.children}</div>
+      <div className="colunm-content">{children}</div>
 
-      <CreateTask />
+      <CreateTask setActive={setActive} />
     </div>
   )
 }

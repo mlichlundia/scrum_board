@@ -39,13 +39,15 @@ export default function PopUp({ active, setActive }) {
       }}
     >
       <section className="pop-up__content" onClick={(e) => e.stopPropagation()}>
-        <h3 className="pop-up__title">Please enter the name of the column</h3>
-        <input
-          className="pop-up__input"
-          placeholder="Type here . . ."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <div>
+          <label htmlFor="Column name"></label>
+          <input
+            className="pop-up__input"
+            placeholder="Name of column"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </div>
         <div className="buttons">
           <button className="pop-up__button" onClick={save}>
             <p4>Save</p4>
