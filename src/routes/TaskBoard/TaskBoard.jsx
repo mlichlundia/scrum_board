@@ -18,7 +18,6 @@ export default function TaskBoard() {
       columns.forEach((column) => {
         column.tasks = tasks.filter((task) => task.columnId === column.id)
       })
-      console.log(columns)
       setColData(columns)
     })
   }, [])
@@ -52,7 +51,7 @@ export default function TaskBoard() {
           <Column
             title={col.title}
             id={col.id}
-            tasks={col.tasks}
+            tasks={col.tasks || []}
             key={col.id}
             setColData={setColData}
             colData={colData}

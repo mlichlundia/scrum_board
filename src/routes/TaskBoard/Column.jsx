@@ -8,8 +8,11 @@ import PopUpTask from './PopUpTask'
 export default function Column({ title, id, setColData, tasks }) {
   const [isPopUpTaskActive, setIsPopUpTaskActive] = useState(false)
   const [taskData, setTaskData] = useState([])
+  let taskList
+  // [...tasks, ...taskData]
 
-  let taskList = tasks || taskData
+  taskList = [...tasks, ...taskData]
+
   return (
     <div className="column">
       <h3 className="column__header">
