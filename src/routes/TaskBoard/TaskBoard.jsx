@@ -21,6 +21,16 @@ export default function TaskBoard() {
       setColData(columns)
     })
   }, [])
+
+  useEffect(() => {
+    const title = localStorage.getItem('title') || ''
+    setTitle(JSON.parse(title))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('title', JSON.stringify(title))
+  }, [title])
+
   return (
     <main className="main-content">
       <header className="header">
