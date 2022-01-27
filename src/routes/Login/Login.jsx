@@ -19,7 +19,7 @@ export default function Login() {
       .then((res) => {
         // console.log(res)
         sessionStorage.setItem('token', res.data.access_token)
-        // console.log(sessionStorage.getItem('token'))
+        console.log(sessionStorage.getItem('token'))
         navigate('/task-board')
       })
       .catch((err) => {

@@ -1,17 +1,27 @@
 import './TaskBoard.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Column from './Column'
-import Task from './Task'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
 import PopUpCol from './PopUpCol'
-import PopUpTask from './PopUpTask'
+import { API_BASE_URL } from '../../constants/api.const'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
   const [isPopUpColActive, setIsPopUpColActive] = useState(false)
-  const [isPopUpTaskActive, setIsPopUpTaskActive] = useState(false)
-
   const [colData, setColData] = useState([])
+
+  useEffect(() => {
+    axios.get(`${API_BASE_URL}/board`).then((res) => {
+      let columns = res.data.columns
+      let tasks = res.data.tasks
+      columns.forEach((column) => {
+        column.tasks = tasks.filter((task) => task.columnId === column.id)
+      })
+      console.log(columns)
+      setColData(columns)
+    })
+  }, [])
   return (
     <main className="main-content">
       <header className="header">
@@ -38,41 +48,22 @@ export default function TaskBoard() {
         </label>
       </header>
       <section className="tasks">
-        <Column
-          setActive={setIsPopUpTaskActive}
-          className="column"
-          title={'Status of the Tasks'}
-        >
-          <Task />
-          <Task />
-          <Task />
-          <Task />
-          <Task />
-        </Column>
-
         {colData.map((col) => (
           <Column
-            className="colunm"
-            setActive={setIsPopUpTaskActive}
-            setColData={setColData}
-            colData={colData}
             title={col.title}
             id={col.id}
-          />
+            tasks={col.tasks}
+            key={col.id}
+            setColData={setColData}
+            colData={colData}
+          ></Column>
         ))}
-        <CreateColumn
-          setActive={setIsPopUpColActive}
-          className="button-create-column"
-        />
+        <CreateColumn setActive={setIsPopUpColActive} />
         <PopUpCol
           active={isPopUpColActive}
           setActive={setIsPopUpColActive}
           colData={colData}
           setColData={setColData}
-        />
-        <PopUpTask
-          active={isPopUpTaskActive}
-          setActive={setIsPopUpTaskActive}
         />
       </section>
     </main>

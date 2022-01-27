@@ -3,30 +3,23 @@ import { API_BASE_URL } from '../../constants/api.const'
 
 import './DeleteColumn.css'
 
-export default function DeleteColumn({ title, id, setColData, colData }) {
-  function handleClick(id) {
+export default function DeleteColumn({ title, id, setColData }) {
+  function handleClick() {
     axios
-      .put(
-        `${API_BASE_URL}/columns`,
-        {
-          id: id,
-          title: title,
+      .delete(`${API_BASE_URL}/columns/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        },
-      )
+      })
       .then(setColData((cols) => cols.filter((col) => col.id !== id)))
+      .catch((err) => console.error(`Error: ${err}`))
   }
   return (
     <button
       className="button-delete-column"
       onClick={() => {
-        handleClick(id)
+        handleClick()
       }}
-      onMouseEnter={() => console.log(title)}
     >
       <svg
         width="18"

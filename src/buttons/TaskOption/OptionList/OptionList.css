@@ -1,0 +1,32 @@
+.option-list {
+  position: absolute;
+  top: 3.5rem;
+  right: 1.25rem;
+  background: var(--white);
+  box-shadow: var(--tooltip-shadow);
+  border-radius: var(--radius-6);
+  width: 7.5rem;
+  z-index: 1;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.option-list__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.option-list__point {
+  border-radius: var(--radius-6);
+  padding: 0.5rem 0.75rem;
+  color: var(--gray400);
+  transition: 0.5s;
+}
+.option-list__point:hover {
+  background: var(--gray100-50);
+}
+.option-list__text {
+}

@@ -19,8 +19,8 @@ export default function PopUp({ active, setActive, colData, setColData }) {
         },
       )
       .then((res) => {
-        console.log(res.data.id)
         setColData([...colData, { id: res.data.id, title: res.data.title }])
+
         setValue('')
         setActive(false)
       })

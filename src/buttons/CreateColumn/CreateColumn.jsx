@@ -1,5 +1,4 @@
 import './CreateColumn.css'
-// import PopUp from '../../routes/TaskBoard/PopUp'
 
 export default function CreateColumn({ setActive }) {
   return (

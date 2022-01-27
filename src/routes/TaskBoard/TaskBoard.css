@@ -23,7 +23,7 @@
 }
 
 .header__input {
-  max-width: 49.5rem;
+  min-width: 40rem;
   padding: 0.5rem 0;
   background: none;
   border: none;
@@ -36,7 +36,6 @@
 
 .header__input:focus {
   box-shadow: var(--card-shadow);
-
   padding: 0.5rem 1rem;
   background: var(--white);
   outline: none;

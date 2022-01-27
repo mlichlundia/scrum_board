@@ -3,7 +3,13 @@ import axios from 'axios'
 import './PopUpTask.css'
 import { API_BASE_URL } from '../../constants/api.const'
 
-export default function PopUpTask({ active, setActive }) {
+export default function PopUpTask({
+  active,
+  setActive,
+  columnId,
+  taskData,
+  setTaskData,
+}) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
@@ -14,7 +20,7 @@ export default function PopUpTask({ active, setActive }) {
         {
           title: title,
           description: description,
-          columnId: '1', //ex
+          columnId: columnId,
         },
         {
           headers: {
@@ -22,10 +28,22 @@ export default function PopUpTask({ active, setActive }) {
           },
         },
       )
-      .then((res) => alert('add Task'))
+      .then((res) => {
+        setTaskData([
+          ...taskData,
+          {
+            id: res.data.id,
+            title: res.data.title,
+            description: res.data.description,
+            columnId: res.data.columnId,
+          },
+        ])
+        setTitle('')
+        setDescription('')
+        setActive(false)
+      })
       .catch((err) => {
         console.error(err)
-        console.log(title, description)
         if (err.response.status === 400) {
           alert('Enter the info')
         } else {

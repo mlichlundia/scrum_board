@@ -26,23 +26,3 @@
   max-width: 14rem;
   margin: 0 0 1rem;
 }
-
-.option__button {
-  top: 1.75rem;
-  right: 1.25rem;
-  position: absolute;
-  display: flex;
-  padding: 0;
-  background: none;
-  border: none;
-  color: var(--gray300);
-}
-
-.option__button.hide {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.option__button:hover {
-  color: var(--gray500);
-}
