@@ -1,63 +1,33 @@
-import { useState } from 'react'
-import axios from 'axios'
 import './PopUpTask.css'
-import { API_BASE_URL } from '../../constants/api.const'
+import { useEffect, useRef } from 'react'
 
 export default function PopUpTask({
   active,
   setActive,
   columnId,
-  taskData,
-  setTaskData,
+  taskList,
+  setTaskList,
+  id,
+  taskTitle,
+  setTaskTitle,
+  taskDescription,
+  setTaskDescription,
+  func,
+  editTaskTitle,
+  editDescription,
 }) {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const input = useRef()
+  const textarea = useRef()
 
-  function save() {
-    axios
-      .post(
-        `${API_BASE_URL}/tasks`,
-        {
-          title: title,
-          description: description,
-          columnId: columnId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        },
-      )
-      .then((res) => {
-        setTaskData([
-          ...taskData,
-          {
-            id: res.data.id,
-            title: res.data.title,
-            description: res.data.description,
-            columnId: res.data.columnId,
-          },
-        ])
-        setTitle('')
-        setDescription('')
-        setActive(false)
-      })
-      .catch((err) => {
-        console.error(err)
-        if (err.response.status === 400) {
-          alert('Enter the info')
-        } else {
-          alert('You have to login to use this option')
-        }
-      })
-  }
-
+  useEffect(() => {
+    input.current.focus()
+  }, [active])
   return (
     <div
       className={active ? 'pop-up open' : 'pop-up'}
       onClick={() => {
-        setTitle('')
-        setDescription('')
+        setTaskTitle('')
+        setTaskDescription('')
         setActive(false)
       }}
     >
@@ -65,33 +35,55 @@ export default function PopUpTask({
         <div>
           <label htmlFor="Task name"></label>
           <input
+            ref={input}
             className="pop-up__input"
             placeholder="Name of your task"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={taskTitle || editTaskTitle}
+            onChange={(e) => setTaskTitle(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.code === 'Enter') {
+                textarea.current.focus()
+              }
+            }}
           />
         </div>
 
         <div>
           <label htmlFor="Task description"></label>
           <textarea
+            ref={textarea}
             className="pop-up__textarea"
             placeholder="Description of yor task"
-            value={description}
+            value={taskDescription || editDescription}
             rows={3}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setTaskDescription(e.target.value)}
           />
         </div>
 
         <div className="buttons">
-          <button className="pop-up__button" onClick={save}>
+          <button
+            className="pop-up__button"
+            onClick={() =>
+              func(
+                taskTitle,
+                taskDescription,
+                columnId,
+                setTaskTitle,
+                setTaskDescription,
+                taskList,
+                setTaskList,
+                setActive,
+                id,
+              )
+            }
+          >
             <p4>Save</p4>
           </button>
           <button
             className="pop-up__button decline"
             onClick={() => {
-              setTitle('')
-              setDescription('')
+              setTaskTitle('')
+              setTaskDescription('')
               setActive(false)
             }}
           >

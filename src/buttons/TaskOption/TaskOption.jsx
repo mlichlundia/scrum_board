@@ -1,5 +1,4 @@
 import './TaskOption.css'
-import OptionList from './OptionList/OptionList'
 
 export default function TaskOption({
   classStyle,
@@ -7,7 +6,6 @@ export default function TaskOption({
   taskData,
   id,
   columnId,
-  optionsActive,
   setOptionsActive,
 }) {
   return (
@@ -34,10 +32,6 @@ export default function TaskOption({
           />
         </svg>
       </button>
-      <OptionList
-        optionsActive={optionsActive}
-        setOptionsActive={setOptionsActive}
-      />
     </>
   )
 }

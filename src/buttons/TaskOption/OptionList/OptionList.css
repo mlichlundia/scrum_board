@@ -24,6 +24,7 @@
   padding: 0.5rem 0.75rem;
   color: var(--gray400);
   transition: 0.5s;
+  cursor: pointer;
 }
 .option-list__point:hover {
   background: var(--gray100-50);

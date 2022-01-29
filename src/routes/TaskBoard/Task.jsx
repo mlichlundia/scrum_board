@@ -3,7 +3,18 @@ import { useState } from 'react'
 import TaskOption from '../../buttons/TaskOption/TaskOption'
 import OptionList from '../../buttons/TaskOption/OptionList/OptionList'
 
-export default function Task({ id, title, description, columnId }) {
+export default function Task({
+  id,
+  title,
+  description,
+  columnId,
+  taskList,
+  setTaskList,
+  setActive,
+  setTaskId,
+  setEditTaskTitle,
+  setEditDescription,
+}) {
   const [option, setOption] = useState('option__button hide')
   const [optionsActive, setOptionsActive] = useState(false)
 
@@ -11,15 +22,17 @@ export default function Task({ id, title, description, columnId }) {
     <div
       className="task"
       onMouseEnter={() => setOption('option__button')}
-      onMouseLeave={() => setOption('option__button hide')}
+      onMouseLeave={() => {
+        setOption('option__button hide')
+        setOptionsActive(false)
+      }}
     >
       <TaskOption
         classStyle={option}
-        // setTaskData={setTaskData}
-        // taskData={taskData}
         id={id}
         columnId={columnId}
-        optionsActive={optionsActive}
+        title={title}
+        description={description}
         setOptionsActive={setOptionsActive}
       />
       <div className="main-content">
@@ -29,7 +42,18 @@ export default function Task({ id, title, description, columnId }) {
 
         <p5 className="task__description">{description}</p5>
       </div>
-      <OptionList optionsActive={optionsActive} />
+      <OptionList
+        id={id}
+        title={title}
+        description={description}
+        taskList={taskList}
+        setTaskList={setTaskList}
+        optionsActive={optionsActive}
+        setActive={setActive}
+        setTaskId={setTaskId}
+        setEditTaskTitle={setEditTaskTitle}
+        setEditDescription={setEditDescription}
+      />
     </div>
   )
 }

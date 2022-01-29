@@ -130,3 +130,7 @@ input {
   cursor: pointer;
   transition: 0.5s;
 }
+
+input {
+  cursor: text;
+}

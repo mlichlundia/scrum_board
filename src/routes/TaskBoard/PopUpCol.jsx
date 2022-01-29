@@ -1,10 +1,16 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { API_BASE_URL } from '../../constants/api.const'
-import './PopUpCol.css'
+import './PopUp.css'
 
 export default function PopUp({ active, setActive, colData, setColData }) {
   const [value, setValue] = useState('')
+
+  const input = useRef()
+  useEffect(() => {
+    input.current.focus()
+  }, [active])
+
   function save() {
     axios
       .post(
@@ -46,6 +52,7 @@ export default function PopUp({ active, setActive, colData, setColData }) {
         <div>
           <label htmlFor="Column name"></label>
           <input
+            ref={input}
             className="pop-up__input"
             placeholder="Name of column"
             value={value}
@@ -53,7 +60,7 @@ export default function PopUp({ active, setActive, colData, setColData }) {
           />
         </div>
         <div className="buttons">
-          <button className="pop-up__button" onClick={save}>
+          <button className="pop-up__button" value=" Save" onClick={save}>
             <p4>Save</p4>
           </button>
           <button

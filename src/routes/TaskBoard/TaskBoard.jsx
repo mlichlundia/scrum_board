@@ -1,5 +1,5 @@
 import './TaskBoard.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import Column from './Column'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
@@ -31,6 +31,7 @@ export default function TaskBoard() {
     localStorage.setItem('title', JSON.stringify(title))
   }, [title])
 
+  const header = useRef()
   return (
     <main className="main-content">
       <header className="header">
@@ -49,10 +50,16 @@ export default function TaskBoard() {
         </svg>
         <label className="header_name" htmlFor="project-name">
           <input
+            ref={header}
             className="header__input"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.code === 'Enter') {
+                header.current.blur()
+              }
+            }}
           ></input>
         </label>
       </header>
