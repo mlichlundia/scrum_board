@@ -4,10 +4,7 @@ import TaskOption from '../../buttons/TaskOption/TaskOption'
 import OptionList from '../../buttons/TaskOption/OptionList/OptionList'
 
 export default function Task({
-  id,
-  title,
-  description,
-  columnId,
+  task,
   taskList,
   setTaskList,
   setActive,
@@ -29,23 +26,21 @@ export default function Task({
     >
       <TaskOption
         classStyle={option}
-        id={id}
-        columnId={columnId}
-        title={title}
-        description={description}
+        id={task.id}
+        columnId={task.columnId}
+        title={task.title}
+        description={task.description}
         setOptionsActive={setOptionsActive}
       />
       <div className="main-content">
         <header className="task__header">
-          <h5>{title}</h5>
+          <h5>{task.title}</h5>
         </header>
 
-        <p5 className="task__description">{description}</p5>
+        <p5 className="task__description">{task.description}</p5>
       </div>
       <OptionList
-        id={id}
-        title={title}
-        description={description}
+        task={task}
         taskList={taskList}
         setTaskList={setTaskList}
         optionsActive={optionsActive}

@@ -16,9 +16,9 @@ export default function Column({ title, id, setColData, tasks }) {
   const [taskId, setTaskId] = useState()
   const [editTaskTitle, setEditTaskTitle] = useState('')
   const [editDescription, setEditDescription] = useState('')
-  console.log(editTaskTitle)
+
   return (
-    <div className="column">
+    <div className="column" droppable={true}>
       <h3 className="column__header">
         <DeleteColumn
           className="button-delete"
@@ -30,11 +30,8 @@ export default function Column({ title, id, setColData, tasks }) {
       <div className="colunm-content">
         {taskList.map((task) => (
           <Task
-            id={task.id}
-            title={task.title}
-            description={task.description}
+            task={task}
             setTitle={setTaskTitle}
-            columnId={id}
             taskList={taskList}
             setActive={setIsPopUpTaskEditActive}
             setTaskId={setTaskId}
@@ -54,7 +51,6 @@ export default function Column({ title, id, setColData, tasks }) {
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
           func={addNew}
-          key={id}
         />
         <PopUpTask
           active={isPopUpTaskEditActive}
@@ -70,7 +66,6 @@ export default function Column({ title, id, setColData, tasks }) {
           func={edit}
           editTaskTitle={editTaskTitle}
           editDescription={editDescription}
-          key={id}
         />
       </div>
 

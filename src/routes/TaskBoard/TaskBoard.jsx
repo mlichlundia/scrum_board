@@ -71,8 +71,7 @@ export default function TaskBoard() {
             tasks={col.tasks || []}
             key={col.id}
             setColData={setColData}
-            colData={colData}
-          ></Column>
+          />
         ))}
         <CreateColumn setActive={setIsPopUpColActive} />
         <PopUpCol

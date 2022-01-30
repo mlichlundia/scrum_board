@@ -3,10 +3,7 @@ import './OptionList.css'
 import { API_BASE_URL } from '../../../constants/api.const'
 
 export default function OptionList({
-  id,
-  title,
-  description,
-  // columnId,
+  task,
   taskList,
   setTaskList,
   optionsActive,
@@ -17,13 +14,13 @@ export default function OptionList({
 }) {
   function deleteTask() {
     axios
-      .delete(`${API_BASE_URL}/tasks/${id}`, {
+      .delete(`${API_BASE_URL}/tasks/${task.id}`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('token')}`,
         },
       })
       .then(() => {
-        setTaskList(taskList.filter((task) => task.id !== id))
+        setTaskList(taskList.filter((t) => t.id !== task.id))
       })
   }
   return (
@@ -33,9 +30,9 @@ export default function OptionList({
           className="option-list__point"
           onClick={() => {
             setActive(true)
-            setTaskId(id)
-            setEditTaskTitle(title)
-            setEditDescription(description)
+            setTaskId(task.id)
+            setEditTaskTitle(task.title)
+            setEditDescription(task.description)
           }}
         >
           <p2>Edit</p2>
