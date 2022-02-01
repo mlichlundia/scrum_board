@@ -2,6 +2,7 @@ import './PopUpTask.css'
 import { useEffect, useRef } from 'react'
 
 export default function PopUpTask({
+  isNew,
   active,
   setActive,
   columnId,
@@ -14,7 +15,9 @@ export default function PopUpTask({
   setTaskDescription,
   func,
   editTaskTitle,
+  setEditTaskTitle,
   editDescription,
+  setEditDescription,
 }) {
   const input = useRef()
   const textarea = useRef()
@@ -22,6 +25,7 @@ export default function PopUpTask({
   useEffect(() => {
     input.current.focus()
   }, [active])
+
   return (
     <div
       className={active ? 'pop-up open' : 'pop-up'}
@@ -38,8 +42,12 @@ export default function PopUpTask({
             ref={input}
             className="pop-up__input"
             placeholder="Name of your task"
-            value={taskTitle || editTaskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
+            value={isNew ? taskTitle : editTaskTitle}
+            onChange={(e) =>
+              isNew
+                ? setTaskTitle(e.target.value)
+                : setEditTaskTitle(e.target.value)
+            }
             onKeyUp={(e) => {
               if (e.code === 'Enter') {
                 textarea.current.focus()
@@ -54,9 +62,13 @@ export default function PopUpTask({
             ref={textarea}
             className="pop-up__textarea"
             placeholder="Description of yor task"
-            value={taskDescription || editDescription}
+            value={isNew ? taskDescription : editDescription}
             rows={3}
-            onChange={(e) => setTaskDescription(e.target.value)}
+            onChange={(e) =>
+              isNew
+                ? setTaskDescription(e.target.value)
+                : setEditDescription(e.target.value)
+            }
           />
         </div>
 
@@ -74,6 +86,10 @@ export default function PopUpTask({
                 setTaskList,
                 setActive,
                 id,
+                editTaskTitle,
+                setEditTaskTitle,
+                editDescription,
+                setTaskDescription,
               )
             }
           >

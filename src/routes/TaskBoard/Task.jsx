@@ -5,6 +5,7 @@ import OptionList from '../../buttons/TaskOption/OptionList/OptionList'
 
 export default function Task({
   task,
+  columnId,
   taskList,
   setTaskList,
   setActive,
@@ -27,7 +28,7 @@ export default function Task({
       <TaskOption
         classStyle={option}
         id={task.id}
-        columnId={task.columnId}
+        columnId={columnId}
         title={task.title}
         description={task.description}
         setOptionsActive={setOptionsActive}

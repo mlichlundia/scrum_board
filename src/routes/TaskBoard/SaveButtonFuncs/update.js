@@ -11,16 +11,20 @@ export default function edit(
   setTaskList,
   setActive,
   id,
+  editTaskTitle,
+  setEditTaskTitle,
+  editDescription,
+  setEditDescription,
 ) {
-  console.log(id, taskTitle, taskDescription, columnId)
+  console.log(id, editTaskTitle, editDescription, columnId)
 
   axios
     .put(
       `${API_BASE_URL}/tasks`,
       {
         id: id,
-        title: taskTitle,
-        description: taskDescription,
+        title: editTaskTitle,
+        description: editDescription,
         columnId: columnId,
       },
 
@@ -37,13 +41,17 @@ export default function edit(
           task.id === id
             ? {
                 id: id,
-                title: taskTitle,
-                description: taskDescription,
+                title: editTaskTitle,
+                description: editDescription,
                 columnId: columnId,
               }
             : task,
         ),
       )
+      setTaskTitle('')
+      setEditTaskTitle('')
+      setTaskDescription('')
+      setEditDescription('')
       setActive(false)
     })
     .catch((err) => {

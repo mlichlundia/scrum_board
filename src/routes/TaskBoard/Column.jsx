@@ -18,7 +18,7 @@ export default function Column({ title, id, setColData, tasks }) {
   const [editDescription, setEditDescription] = useState('')
 
   return (
-    <div className="column" droppable={true}>
+    <div className="column">
       <h3 className="column__header">
         <DeleteColumn
           className="button-delete"
@@ -32,7 +32,9 @@ export default function Column({ title, id, setColData, tasks }) {
           <Task
             task={task}
             setTitle={setTaskTitle}
+            columnId={id}
             taskList={taskList}
+            setTaskList={setTaskList}
             setActive={setIsPopUpTaskEditActive}
             setTaskId={setTaskId}
             setEditTaskTitle={setEditTaskTitle}
@@ -41,6 +43,7 @@ export default function Column({ title, id, setColData, tasks }) {
           />
         ))}
         <PopUpTask
+          isNew={true}
           active={isPopUpTaskActive}
           setActive={setIsPopUpTaskActive}
           columnId={id}
@@ -51,8 +54,10 @@ export default function Column({ title, id, setColData, tasks }) {
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
           func={addNew}
+          key={id}
         />
         <PopUpTask
+          isNew={false}
           active={isPopUpTaskEditActive}
           setActive={setIsPopUpTaskEditActive}
           columnId={id}
@@ -65,7 +70,10 @@ export default function Column({ title, id, setColData, tasks }) {
           setTaskDescription={setTaskDescription}
           func={edit}
           editTaskTitle={editTaskTitle}
+          setEditTaskTitle={setEditTaskTitle}
           editDescription={editDescription}
+          setEditDescription={setEditDescription}
+          key={id}
         />
       </div>
 
