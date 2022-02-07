@@ -1,10 +1,12 @@
 import './TaskBoard.css'
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import { DragDropContext } from 'react-beautiful-dnd'
 import Column from './Column'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
 import PopUpCol from './PopUpCol'
 import { API_BASE_URL } from '../../constants/api.const'
+import produce from 'immer'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
@@ -32,6 +34,70 @@ export default function TaskBoard() {
   }, [title])
 
   const header = useRef()
+
+  function dragEnd({ destination, source }) {
+    console.log('from ', source)
+    console.log('to ', destination)
+    if (!destination) {
+      return
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return
+    }
+    console.log(colData)
+    const taskCopy = {
+      ...colData
+        .find((col) => col.id === source.droppableId)
+        .tasks.find((task, index) => index === source.index),
+    }
+
+    const sourceColumn = colData.find((col) => col.id === source.droppableId)
+    const destinationColumn = colData.find(
+      (col) => col.id === destination.droppableId,
+    )
+    console.log(
+      taskCopy.id,
+      taskCopy.title,
+      taskCopy.description,
+      destinationColumn.id,
+    )
+    axios
+      .put(
+        `${API_BASE_URL}/tasks`,
+        {
+          id: taskCopy.id,
+          title: taskCopy.title,
+          description: taskCopy.description,
+          columnId: destinationColumn.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        },
+      )
+      .then(() => {
+        const indexSourceColumn = colData.indexOf(sourceColumn)
+        const indexDestinationColumn = colData.indexOf(destinationColumn)
+
+        const state = produce(colData, (draft) => {
+          draft[indexSourceColumn].tasks.splice(source.index, 1)
+          draft[indexDestinationColumn].tasks.splice(
+            destination.index,
+            0,
+            taskCopy,
+          )
+        })
+
+        console.log({ state })
+
+        setColData(state)
+      })
+      .catch((err) => console.error(err))
+  }
   return (
     <main className="main-content">
       <header className="header">
@@ -64,16 +130,21 @@ export default function TaskBoard() {
         </label>
       </header>
       <section className="tasks">
-        {colData.map((col) => (
-          <Column
-            title={col.title}
-            id={col.id}
-            tasks={col.tasks || []}
-            key={col.id}
-            setColData={setColData}
-            colData={colData}
-          ></Column>
-        ))}
+        <DragDropContext
+          // onDragStart={dragStart}
+          onDragEnd={dragEnd}
+        >
+          {colData.map((col) => (
+            <Column
+              title={col.title}
+              id={col.id}
+              tasks={col.tasks || []}
+              key={col.id}
+              setColData={setColData}
+              colData={colData}
+            ></Column>
+          ))}
+        </DragDropContext>
         <CreateColumn setActive={setIsPopUpColActive} />
         <PopUpCol
           active={isPopUpColActive}

@@ -26,6 +26,7 @@ export default function save(
       },
     )
     .then((res) => {
+      console.log(res)
       setTaskList([
         ...taskList,
         {
@@ -35,6 +36,7 @@ export default function save(
           columnId: res.data.columnId,
         },
       ])
+      console.log(taskList)
       setTitle('')
       setDescription('')
       setActive(false)
