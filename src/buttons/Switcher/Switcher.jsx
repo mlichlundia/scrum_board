@@ -2,7 +2,7 @@ import './Switcher.css'
 export default function Switcher() {
   return (
     <div className="switch-wrapper">
-      <p5 className="switch__description">Night Mode</p5>
+      <p className="p5 switch__description">Night Mode</p>
       <div className="switch">
         <input className="checkbox" type="checkbox"></input>
         <label className="switch__ball"></label>
