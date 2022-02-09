@@ -9,19 +9,22 @@ import Description from './routes/Description/Description'
 import Register from './routes/Register/Register'
 import Login from './routes/Login/Login'
 import PageNotFound from './routes/PageNotFount/PageNotFound'
+import { BoardProvider } from './routes/TaskBoard/context/boardContext'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="task-board" element={<TaskBoard />}></Route>
-        <Route path="description" element={<Description />}></Route>
-        <Route path="register" element={<Register />}></Route>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="*" element={<PageNotFound />}></Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+  <BoardProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="task-board" element={<TaskBoard />}></Route>
+          <Route path="description" element={<Description />}></Route>
+          <Route path="register" element={<Register />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="*" element={<PageNotFound />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </BoardProvider>,
   document.getElementById('root'),
 )
 

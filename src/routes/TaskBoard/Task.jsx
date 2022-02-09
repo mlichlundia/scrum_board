@@ -7,13 +7,9 @@ import OptionList from '../../buttons/TaskOption/OptionList/OptionList'
 export default function Task({
   task,
   columnId,
-  taskList,
-  setTaskList,
-  setActive,
-  setTaskId,
-  setEditTaskTitle,
-  setEditDescription,
   index,
+  setCurrentTask,
+  setIsPopUpEditActive,
 }) {
   const [option, setOption] = useState('option__button hide')
   const [optionsActive, setOptionsActive] = useState(false)
@@ -32,14 +28,7 @@ export default function Task({
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <TaskOption
-            classStyle={option}
-            id={task.id}
-            columnId={columnId}
-            title={task.title}
-            description={task.description}
-            setOptionsActive={setOptionsActive}
-          />
+          <TaskOption classStyle={option} setOptionsActive={setOptionsActive} />
           <div className="main-content">
             <header className="task__header">
               <h5>{task.title}</h5>
@@ -49,13 +38,10 @@ export default function Task({
           </div>
           <OptionList
             task={task}
-            taskList={taskList}
-            setTaskList={setTaskList}
+            columnid={columnId}
             optionsActive={optionsActive}
-            setActive={setActive}
-            setTaskId={setTaskId}
-            setEditTaskTitle={setEditTaskTitle}
-            setEditDescription={setEditDescription}
+            setActive={setIsPopUpEditActive}
+            setCurrentTask={setCurrentTask}
           />
         </div>
       )}

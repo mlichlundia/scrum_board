@@ -1,9 +1,12 @@
 import axios from 'axios'
 import { API_BASE_URL } from '../../constants/api.const'
-
+import { useContext } from 'react'
+import BoardContext from '../../routes/TaskBoard/context/boardContext'
 import './DeleteColumn.css'
 
-export default function DeleteColumn({ title, id, setColData }) {
+export default function DeleteColumn({ id }) {
+  const { setColData } = useContext(BoardContext)
+
   function handleClick() {
     axios
       .delete(`${API_BASE_URL}/columns/${id}`, {

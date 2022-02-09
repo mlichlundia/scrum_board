@@ -1,28 +1,15 @@
 import './TaskBoard.css'
-import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from './Column'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
 import PopUpCol from './PopUpCol'
 import { API_BASE_URL } from '../../constants/api.const'
-import produce from 'immer'
+import BoardContext from './context/boardContext'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
   const [isPopUpColActive, setIsPopUpColActive] = useState(false)
-  const [colData, setColData] = useState([])
-
-  useEffect(() => {
-    axios.get(`${API_BASE_URL}/board`).then((res) => {
-      let columns = res.data.columns
-      let tasks = res.data.tasks
-      columns.forEach((column) => {
-        column.tasks = tasks.filter((task) => task.columnId === column.id)
-      })
-      setColData(columns)
-    })
-  }, [])
 
   useEffect(() => {
     const title = localStorage.getItem('title') || ''
@@ -35,69 +22,70 @@ export default function TaskBoard() {
 
   const header = useRef()
 
-  function dragEnd({ destination, source }) {
-    console.log('from ', source)
-    console.log('to ', destination)
-    if (!destination) {
-      return
-    }
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return
-    }
-    console.log(colData)
-    const taskCopy = {
-      ...colData
-        .find((col) => col.id === source.droppableId)
-        .tasks.find((task, index) => index === source.index),
-    }
+  // function dragEnd({ destination, source }) {
+  //   console.log('from ', source)
+  //   console.log('to ', destination)
+  //   if (!destination) {
+  //     return
+  //   }
+  //   if (
+  //     destination.droppableId === source.droppableId &&
+  //     destination.index === source.index
+  //   ) {
+  //     return
+  //   }
+  //   console.log(colData)
+  //   const taskCopy = {
+  //     ...colData
+  //       .find((col) => col.id === source.droppableId)
+  //       .tasks.find((task, index) => index === source.index),
+  //   }
 
-    const sourceColumn = colData.find((col) => col.id === source.droppableId)
-    const destinationColumn = colData.find(
-      (col) => col.id === destination.droppableId,
-    )
-    console.log(
-      taskCopy.id,
-      taskCopy.title,
-      taskCopy.description,
-      destinationColumn.id,
-    )
-    axios
-      .put(
-        `${API_BASE_URL}/tasks`,
-        {
-          id: taskCopy.id,
-          title: taskCopy.title,
-          description: taskCopy.description,
-          columnId: destinationColumn.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        },
-      )
-      .then(() => {
-        const indexSourceColumn = colData.indexOf(sourceColumn)
-        const indexDestinationColumn = colData.indexOf(destinationColumn)
+  //   const sourceColumn = colData.find((col) => col.id === source.droppableId)
+  //   const destinationColumn = colData.find(
+  //     (col) => col.id === destination.droppableId,
+  //   )
+  //   console.log(
+  //     taskCopy.id,
+  //     taskCopy.title,
+  //     taskCopy.description,
+  //     destinationColumn.id,
+  //   )
+  //   axios
+  //     .put(
+  //       `${API_BASE_URL}/tasks`,
+  //       {
+  //         id: taskCopy.id,
+  //         title: taskCopy.title,
+  //         description: taskCopy.description,
+  //         columnId: destinationColumn.id,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+  //         },
+  //       },
+  //     )
+  //     .then(() => {
+  //       const indexSourceColumn = colData.indexOf(sourceColumn)
+  //       const indexDestinationColumn = colData.indexOf(destinationColumn)
 
-        const state = produce(colData, (draft) => {
-          draft[indexSourceColumn].tasks.splice(source.index, 1)
-          draft[indexDestinationColumn].tasks.splice(
-            destination.index,
-            0,
-            taskCopy,
-          )
-        })
+  //       const state = produce(colData, (draft) => {
+  //         draft[indexSourceColumn].tasks.splice(source.index, 1)
+  //         draft[indexDestinationColumn].tasks.splice(
+  //           destination.index,
+  //           0,
+  //           taskCopy,
+  //         )
+  //       })
 
-        console.log({ state })
+  //       console.log({ state })
 
-        setColData(state)
-      })
-      .catch((err) => console.error(err))
-  }
+  //       setColData(state)
+  //     })
+  //     .catch((err) => console.error(err))
+  // }
+  const { colData } = useContext(BoardContext)
   return (
     <main className="main-content">
       <header className="header">
@@ -129,29 +117,22 @@ export default function TaskBoard() {
           ></input>
         </label>
       </header>
+
       <section className="tasks">
         <DragDropContext
-          // onDragStart={dragStart}
-          onDragEnd={dragEnd}
+        // onDragEnd={dragEnd}
         >
           {colData.map((col) => (
             <Column
               title={col.title}
               id={col.id}
-              tasks={col.tasks || []}
+              tasks={col.tasks}
               key={col.id}
-              setColData={setColData}
-              colData={colData}
             ></Column>
           ))}
         </DragDropContext>
         <CreateColumn setActive={setIsPopUpColActive} />
-        <PopUpCol
-          active={isPopUpColActive}
-          setActive={setIsPopUpColActive}
-          colData={colData}
-          setColData={setColData}
-        />
+        <PopUpCol active={isPopUpColActive} setActive={setIsPopUpColActive} />
       </section>
     </main>
   )

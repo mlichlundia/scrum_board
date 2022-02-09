@@ -1,29 +1,33 @@
 import axios from 'axios'
 import { API_BASE_URL } from '../../../constants/api.const'
+import produce from 'immer'
 
 export default function edit(
-  taskTitle,
-  taskDescription,
+  title,
+  setTitle,
+  description,
+  setDescription,
   columnId,
-  setTaskTitle,
-  setTaskDescription,
-  taskList,
-  setTaskList,
+  colData,
+  setColData,
+  columnIndex,
   setActive,
-  id,
-  editTaskTitle,
-  setEditTaskTitle,
+  task,
+  editTitle,
+  setEditTitle,
   editDescription,
   setEditDescription,
 ) {
-  console.log(id, editTaskTitle, editDescription, columnId)
+  console.log(columnIndex)
+  const taskIndex = colData[columnIndex].tasks.indexOf(task)
+  console.log(taskIndex)
 
   axios
     .put(
       `${API_BASE_URL}/tasks`,
       {
-        id: id,
-        title: editTaskTitle,
+        id: task.id,
+        title: editTitle,
         description: editDescription,
         columnId: columnId,
       },
@@ -36,21 +40,20 @@ export default function edit(
     )
     .then((res) => {
       console.log(res)
-      setTaskList(
-        taskList.map((task) =>
-          task.id === id
-            ? {
-                id: id,
-                title: editTaskTitle,
-                description: editDescription,
-                columnId: columnId,
-              }
-            : task,
-        ),
-      )
-      setTaskTitle('')
-      setEditTaskTitle('')
-      setTaskDescription('')
+
+      const state = produce(colData, (draft) => {
+        draft[columnIndex].tasks[taskIndex] = {
+          id: task.id,
+          title: editTitle,
+          description: editDescription,
+          columnId: columnId,
+        }
+      })
+
+      setColData(state)
+      setTitle('')
+      setEditTitle('')
+      setDescription('')
       setEditDescription('')
       setActive(false)
     })

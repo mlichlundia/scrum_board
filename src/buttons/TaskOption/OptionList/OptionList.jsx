@@ -1,17 +1,22 @@
 import axios from 'axios'
 import './OptionList.css'
 import { API_BASE_URL } from '../../../constants/api.const'
+import { useContext } from 'react'
+import BoardContext from '../../../routes/TaskBoard/context/boardContext'
+import produce from 'immer'
 
 export default function OptionList({
   task,
-  taskList,
-  setTaskList,
+  columnid,
   optionsActive,
   setActive,
-  setTaskId,
-  setEditTaskTitle,
-  setEditDescription,
+  setCurrentTask,
 }) {
+  const { colData, setColData } = useContext(BoardContext)
+  const column = colData.find((col) => col.id === columnid)
+  const columnIndex = colData.indexOf(column)
+  const taskIndex = column.tasks.indexOf(task)
+
   function deleteTask() {
     axios
       .delete(`${API_BASE_URL}/tasks/${task.id}`, {
@@ -20,7 +25,11 @@ export default function OptionList({
         },
       })
       .then(() => {
-        setTaskList(taskList.filter((t) => t.id !== task.id))
+        const state = produce(colData, (draft) => {
+          draft[columnIndex].tasks.splice(taskIndex, 1)
+        })
+
+        setColData(state)
       })
   }
   return (
@@ -30,15 +39,13 @@ export default function OptionList({
           className="option-list__point"
           onClick={() => {
             setActive(true)
-            setTaskId(task.id)
-            setEditTaskTitle(task.title)
-            setEditDescription(task.description)
+            setCurrentTask(task)
           }}
         >
-          <p2>Edit</p2>
+          <p className="p2">Edit</p>
         </li>
         <li className="option-list__point" onClick={deleteTask}>
-          <p2>Delete</p2>
+          <p className="p2">Delete</p>
         </li>
       </ul>
     </div>

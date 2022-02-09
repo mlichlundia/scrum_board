@@ -1,37 +1,38 @@
 import './PopUpTask.css'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useContext } from 'react'
+import BoardContext from './context/boardContext'
 
 export default function PopUpTask({
   isNew,
   active,
   setActive,
   columnId,
-  taskList,
-  setTaskList,
-  id,
-  taskTitle,
-  setTaskTitle,
-  taskDescription,
-  setTaskDescription,
+  task,
   func,
-  editTaskTitle,
-  setEditTaskTitle,
-  editDescription,
-  setEditDescription,
 }) {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [editTitle, setEditTitle] = useState('')
+  const [editDescription, setEditDescription] = useState('')
+
+  const { colData, setColData } = useContext(BoardContext)
+  const column = colData.find((col) => col.id === columnId)
+  const columnIndex = colData.indexOf(column)
   const input = useRef()
   const textarea = useRef()
 
   useEffect(() => {
     input.current.focus()
-  }, [active])
+    setEditTitle(task?.title)
+    setEditDescription(task?.description)
+  }, [active, task])
 
   return (
     <div
       className={active ? 'pop-up open' : 'pop-up'}
       onClick={() => {
-        setTaskTitle('')
-        setTaskDescription('')
+        setTitle('')
+        setDescription('')
         setActive(false)
       }}
     >
@@ -42,11 +43,9 @@ export default function PopUpTask({
             ref={input}
             className="pop-up__input"
             placeholder="Name of your task"
-            value={isNew ? taskTitle : editTaskTitle}
+            value={isNew ? title : editTitle}
             onChange={(e) =>
-              isNew
-                ? setTaskTitle(e.target.value)
-                : setEditTaskTitle(e.target.value)
+              isNew ? setTitle(e.target.value) : setEditTitle(e.target.value)
             }
             onKeyUp={(e) => {
               if (e.code === 'Enter') {
@@ -62,11 +61,11 @@ export default function PopUpTask({
             ref={textarea}
             className="pop-up__textarea"
             placeholder="Description of yor task"
-            value={isNew ? taskDescription : editDescription}
+            value={isNew ? description : editDescription}
             rows={3}
             onChange={(e) =>
               isNew
-                ? setTaskDescription(e.target.value)
+                ? setDescription(e.target.value)
                 : setEditDescription(e.target.value)
             }
           />
@@ -77,19 +76,20 @@ export default function PopUpTask({
             className="pop-up__button"
             onClick={() =>
               func(
-                taskTitle,
-                taskDescription,
+                title,
+                setTitle,
+                description,
+                setDescription,
                 columnId,
-                setTaskTitle,
-                setTaskDescription,
-                taskList,
-                setTaskList,
+                colData,
+                setColData,
+                columnIndex,
                 setActive,
-                id,
-                editTaskTitle,
-                setEditTaskTitle,
+                task,
+                editTitle,
+                setEditTitle,
                 editDescription,
-                setTaskDescription,
+                setEditDescription,
               )
             }
           >
@@ -98,8 +98,8 @@ export default function PopUpTask({
           <button
             className="pop-up__button decline"
             onClick={() => {
-              setTaskTitle('')
-              setTaskDescription('')
+              setTitle('')
+              setDescription('')
               setActive(false)
             }}
           >

@@ -8,7 +8,7 @@ export default function CreateTask({ setActive }) {
         setActive(true)
       }}
     >
-      <p1>Create Task</p1>
+      <p className="p1">Create Task</p>
       <svg
         className="button-create-task__icon"
         width="15"

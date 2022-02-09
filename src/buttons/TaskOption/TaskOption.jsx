@@ -1,23 +1,9 @@
 import './TaskOption.css'
 
-export default function TaskOption({
-  classStyle,
-  setTaskData,
-  taskData,
-  id,
-  columnId,
-  setOptionsActive,
-}) {
+export default function TaskOption({ classStyle, setOptionsActive }) {
   return (
     <>
-      <button
-        className={classStyle}
-        setTaskData={setTaskData}
-        taskData={taskData}
-        id={id}
-        columnId={columnId}
-        onClick={() => setOptionsActive(true)}
-      >
+      <button className={classStyle} onClick={() => setOptionsActive(true)}>
         <svg
           className="option__icon"
           width="20"

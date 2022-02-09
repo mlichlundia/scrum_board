@@ -61,7 +61,7 @@ export default function PopUp({ active, setActive, colData, setColData }) {
         </div>
         <div className="buttons">
           <button className="pop-up__button" value=" Save" onClick={save}>
-            <p4>Save</p4>
+            <p className="p4">Save</p>
           </button>
           <button
             className="pop-up__button decline"
@@ -70,7 +70,7 @@ export default function PopUp({ active, setActive, colData, setColData }) {
               setActive(false)
             }}
           >
-            <p4>Decline</p4>
+            <p className="p4">Decline</p>
           </button>
         </div>
       </section>

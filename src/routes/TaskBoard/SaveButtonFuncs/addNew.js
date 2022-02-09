@@ -1,14 +1,16 @@
 import axios from 'axios'
 import { API_BASE_URL } from '../../../constants/api.const'
+import produce from 'immer'
 
 export default function save(
   title,
-  description,
-  columnId,
   setTitle,
+  description,
   setDescription,
-  taskList,
-  setTaskList,
+  columnId,
+  colData,
+  setColData,
+  columnIndex,
   setActive,
 ) {
   axios
@@ -26,17 +28,16 @@ export default function save(
       },
     )
     .then((res) => {
-      console.log(res)
-      setTaskList([
-        ...taskList,
-        {
+      const state = produce(colData, (draft) => {
+        draft[columnIndex].tasks.push({
           id: res.data.id,
           title: res.data.title,
           description: res.data.description,
           columnId: res.data.columnId,
-        },
-      ])
-      console.log(taskList)
+        })
+      })
+
+      setColData(state)
       setTitle('')
       setDescription('')
       setActive(false)
