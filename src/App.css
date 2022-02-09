@@ -90,8 +90,9 @@ hr {
 }
 
 .auth__route {
+  display: inline-block;
   color: var(--blue700);
-  padding: 0 0.4rem;
+  padding: 0 0.3rem;
 }
 
 .auth__route:hover {
