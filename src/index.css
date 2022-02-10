@@ -25,8 +25,8 @@ html {
   --menu-shadow: 0px 0px 2.25rem rgba(174, 192, 208, 0.16);
   --card-shadow: 0px 0.3125rem 0.75rem rgba(112, 134, 154, 0.04);
   --card-hover: 0px 0.3125rem 0.75rem rgba(112, 134, 154, 0.16);
-  --tooltip-shadow: 0px 0px 0.875px rgba(174, 192, 208, 0.44);
-  --drag-n-drop-shadow: 0px 0.375px 1.5rem 1rem rgba(112, 134, 154, 0.1);
+  --tooltip-shadow: 0px 0px 0.875rem rgba(174, 192, 208, 0.44);
+  --drag-n-drop-shadow: 0px 0.375rem 1.5rem 1rem rgba(112, 134, 154, 0.1);
   --pop-up: 0px 0px 1.875rem rgba(174, 192, 208, 0.24);
 }
 
@@ -74,7 +74,7 @@ h4 {
 }
 
 h5 {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   line-height: 150%;
   font-weight: 500;
   margin: 0;
@@ -118,7 +118,7 @@ p {
 
 .p5 {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 150%;
   font-weight: 400;
 }

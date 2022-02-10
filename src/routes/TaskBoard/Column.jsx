@@ -30,7 +30,7 @@ export default function Column({ title, id, tasks }) {
               {tasks.map((task, index) => {
                 return (
                   <Draggable key={task.id} draggableId={task.id} index={index}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <li
                         className="droppable__point"
                         ref={provided.innerRef}
@@ -43,7 +43,6 @@ export default function Column({ title, id, tasks }) {
                           index={index}
                           setIsPopUpEditActive={setIsPopUpEditActive}
                           setCurrentTask={setCurrentTask}
-                          isDragging={snapshot.isDragging}
                         />
                       </li>
                     )}
