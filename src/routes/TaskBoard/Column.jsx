@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Droppable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import './Column.css'
 import CreateTask from '../../buttons/CreateTask/CreateTask.jsx'
 import DeleteColumn from '../../buttons/DeleteColumn/DeleteColumn.jsx'
@@ -22,23 +22,36 @@ export default function Column({ title, id, tasks }) {
       <div className="colunm-content">
         <Droppable droppableId={id}>
           {(provided) => (
-            <div
+            <ul
               className="droppable"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {tasks.map((task, index) => (
-                <Task
-                  task={task}
-                  columnId={id}
-                  index={index}
-                  key={task.id}
-                  setIsPopUpEditActive={setIsPopUpEditActive}
-                  setCurrentTask={setCurrentTask}
-                />
-              ))}
+              {tasks.map((task, index) => {
+                return (
+                  <Draggable key={task.id} draggableId={task.id} index={index}>
+                    {(provided, snapshot) => (
+                      <li
+                        className="droppable__point"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Task
+                          task={task}
+                          columnId={id}
+                          index={index}
+                          setIsPopUpEditActive={setIsPopUpEditActive}
+                          setCurrentTask={setCurrentTask}
+                          isDragging={snapshot.isDragging}
+                        />
+                      </li>
+                    )}
+                  </Draggable>
+                )
+              })}
               {provided.placeholder}
-            </div>
+            </ul>
           )}
         </Droppable>
         <PopUpTask

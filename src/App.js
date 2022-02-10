@@ -102,17 +102,17 @@ function App() {
         <div className="auth">
           <p className="p3">
             To use all functions of the App you have to
-            <h4 className="auth__route">
+            <span className="auth__route">
               <Link to="/register" className="auth__route">
                 Register
               </Link>
-            </h4>
+            </span>
             or
-            <h4 className="auth__route">
+            <span className="auth__route">
               <Link to="/login" className="auth__route">
                 Login
               </Link>
-            </h4>
+            </span>
           </p>
         </div>
       </nav>

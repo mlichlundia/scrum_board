@@ -15,4 +15,10 @@
 
 .droppable {
   padding: 1rem 0 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.droppable__point {
+  margin: 0 0 0.75rem;
 }

@@ -22,12 +22,12 @@ html {
   --text: #545960;
   --black: #383d45;
   --pop-up-color: rgb(56, 61, 69, 0.3);
-  --menu-shadow: 0px 0px 36px rgba(174, 192, 208, 0.16);
-  --card-shadow: 0px 5px 12px rgba(112, 134, 154, 0.04);
-  --card-hover: 0px 5px 12px rgba(112, 134, 154, 0.16);
-  --tooltip-shadow: 0px 0px 14px rgba(174, 192, 208, 0.44);
-  --drag-n-drop-shadow: 0px 6px 32px 16px rgba(112, 134, 154, 0.16);
-  --pop-up: 0px 0px 30px rgba(174, 192, 208, 0.24);
+  --menu-shadow: 0px 0px 2.25rem rgba(174, 192, 208, 0.16);
+  --card-shadow: 0px 0.3125rem 0.75rem rgba(112, 134, 154, 0.04);
+  --card-hover: 0px 0.3125rem 0.75rem rgba(112, 134, 154, 0.16);
+  --tooltip-shadow: 0px 0px 0.875px rgba(174, 192, 208, 0.44);
+  --drag-n-drop-shadow: 0px 0.375px 1.5rem 1rem rgba(112, 134, 154, 0.1);
+  --pop-up: 0px 0px 1.875rem rgba(174, 192, 208, 0.24);
 }
 
 body {

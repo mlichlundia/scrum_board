@@ -1,11 +1,14 @@
 import axios from 'axios'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
+import BoardContext from '../TaskBoard/context/boardContext'
 import { API_BASE_URL } from '../../constants/api.const'
 import './PopUp.css'
+import produce from 'immer'
 
-export default function PopUp({ active, setActive, colData, setColData }) {
+export default function PopUp({ active, setActive }) {
   const [value, setValue] = useState('')
 
+  const { colData, setColData } = useContext(BoardContext)
   const input = useRef()
   useEffect(() => {
     input.current.focus()
@@ -25,8 +28,10 @@ export default function PopUp({ active, setActive, colData, setColData }) {
         },
       )
       .then((res) => {
-        setColData([...colData, { id: res.data.id, title: res.data.title }])
-
+        const state = produce(colData, (draft) => {
+          draft.push({ id: res.data.id, title: res.data.title, tasks: [] })
+        })
+        setColData(state)
         setValue('')
         setActive(false)
       })

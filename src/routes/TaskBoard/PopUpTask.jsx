@@ -43,7 +43,7 @@ export default function PopUpTask({
             ref={input}
             className="pop-up__input"
             placeholder="Name of your task"
-            value={isNew ? title : editTitle}
+            value={(isNew ? title : editTitle) || ''}
             onChange={(e) =>
               isNew ? setTitle(e.target.value) : setEditTitle(e.target.value)
             }
@@ -61,7 +61,7 @@ export default function PopUpTask({
             ref={textarea}
             className="pop-up__textarea"
             placeholder="Description of yor task"
-            value={isNew ? description : editDescription}
+            value={(isNew ? description : editDescription) || ''}
             rows={3}
             onChange={(e) =>
               isNew
