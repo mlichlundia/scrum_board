@@ -1,12 +1,15 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { API_BASE_URL } from '../../constants/api.const'
+import ThemeContext from '../../context/themeContext'
 
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const { theme } = useContext(ThemeContext)
 
   let navigate = useNavigate()
   function handleSubmit(e) {
@@ -17,7 +20,6 @@ export default function Login() {
         password,
       })
       .then((res) => {
-        // console.log(res)
         sessionStorage.setItem('token', res.data.access_token)
         console.log(sessionStorage.getItem('token'))
         navigate('/task-board')
@@ -67,8 +69,12 @@ export default function Login() {
           </div>
         </section>
         <section>
-          <button className="form__button" type="submit">
-            <p1>Log In</p1>
+          <button
+            className="form__button"
+            style={theme === 'dark-theme' ? { color: 'var(--black)' } : {}}
+            type="submit"
+          >
+            <p className="p1">Log In</p>
           </button>
         </section>
       </form>

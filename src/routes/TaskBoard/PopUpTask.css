@@ -11,10 +11,11 @@
   transition: 0.5s;
   margin: 0 0 1rem;
   color: var(--black);
+  background: var(--bg-sec);
 }
 
 .pop-up__textarea::placeholder {
-  color: var(--gray200);
+  color: var(--gray300);
   font-weight: 300;
 }
 

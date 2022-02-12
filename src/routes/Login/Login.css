@@ -25,6 +25,8 @@ main {
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: var(--radius-8);
   outline: none;
+  color: var(--text);
+  background: var(--bg-sec);
 }
 .input::placeholder {
   font-size: 0.875rem;
@@ -36,7 +38,7 @@ main {
 }
 
 .form__button {
-  color: var(--white);
+  color: var(--bg-sec);
   background: var(--blue700);
   width: 19.75rem;
   margin: 0.75rem 0 0;

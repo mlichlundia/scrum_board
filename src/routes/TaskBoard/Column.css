@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   color: var(--gray400);
-  background: #f8f8fa;
+  background: var(--bg);
   z-index: 1;
   width: 100%;
   display: flex;

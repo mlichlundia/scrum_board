@@ -2,7 +2,7 @@
   position: absolute;
   top: 3.5rem;
   right: 1.25rem;
-  background: var(--white);
+  background: var(--bg-sec);
   box-shadow: var(--tooltip-shadow);
   border-radius: var(--radius-6);
   width: 7.5rem;

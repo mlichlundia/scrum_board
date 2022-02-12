@@ -1,7 +1,7 @@
 .task {
   position: relative;
   width: 100%;
-  background: var(--white);
+  background: var(--bg-sec);
   padding: 1.25rem 1.25rem;
   border-radius: var(--radius-8);
   display: flex;
@@ -35,4 +35,5 @@
   width: 100%;
   white-space: pre-wrap;
   word-break: break-all;
+  color: var(--text);
 }

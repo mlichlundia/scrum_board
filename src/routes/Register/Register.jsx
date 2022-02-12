@@ -1,12 +1,15 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import './Register.css'
 import { API_BASE_URL } from '../../constants/api.const'
+import ThemeContext from '../../context/themeContext'
 
 export default function Registartion() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const { theme } = useContext(ThemeContext)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -65,8 +68,12 @@ export default function Registartion() {
           </div>
         </section>
         <section>
-          <button className="form__button" type="submit">
-            <p1>Sign Up</p1>
+          <button
+            className="form__button"
+            style={theme === 'dark-theme' ? { color: 'var(--black)' } : {}}
+            type="submit"
+          >
+            <p className="p1">Sign Up</p>
           </button>
         </section>
       </form>

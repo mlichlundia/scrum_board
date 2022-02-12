@@ -22,7 +22,7 @@
 }
 
 .pop-up__content {
-  background: var(--white);
+  background: var(--bg-sec);
   padding: 2rem;
   border-radius: var(--radius-8);
   box-shadow: var(--pop-up);
@@ -39,6 +39,7 @@
   margin: 0 0 1rem;
   border: 1px solid var(--gray100-50);
   padding: 0.5rem 0.75rem;
+  background: var(--bg-sec);
 }
 
 .pop-up__input:focus {
@@ -49,7 +50,7 @@
 .pop-up__input::placeholder {
   font-size: 1.25rem;
   font-weight: 300;
-  color: var(--gray200);
+  color: var(--gray300);
 }
 
 .pop-up__button {
