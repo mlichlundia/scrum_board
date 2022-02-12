@@ -57,21 +57,19 @@ export default function TaskBoard() {
     console.log(ids)
     setColData(state)
 
-    if (destination.droppableId === source.droppableId) {
-      axios
-        .put(
-          `${API_BASE_URL}/tasks/reorder`,
-          {
-            ids: ids,
+    axios
+      .put(
+        `${API_BASE_URL}/tasks/reorder`,
+        {
+          ids: ids,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-            },
-          },
-        )
-        .catch((err) => console.error(err))
-    }
+        },
+      )
+      .catch((err) => console.error(err))
     axios
       .put(
         `${API_BASE_URL}/tasks`,
