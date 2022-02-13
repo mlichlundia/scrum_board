@@ -6,7 +6,6 @@ import OptionList from '../../buttons/TaskOption/OptionList/OptionList'
 export default function Task({
   task,
   columnId,
-  index,
   setCurrentTask,
   setIsPopUpEditActive,
 }) {

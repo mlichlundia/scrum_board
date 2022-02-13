@@ -6,7 +6,6 @@ export function ThemeContextProvider({ children }) {
   const [checked, setChecked] = useState('')
 
   function toggleTheme(e) {
-    console.log(e.target.checked)
     setTheme(e.target.checked ? 'dark-theme' : '')
     setChecked(e.target.checked ? 1 : '')
   }

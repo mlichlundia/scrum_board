@@ -1,49 +1,19 @@
-import axios from 'axios'
 import { useEffect, useState, useRef, useContext } from 'react'
 import BoardContext from '../TaskBoard/context/boardContext'
-import { API_BASE_URL } from '../../constants/api.const'
 import './PopUp.css'
-import produce from 'immer'
+import Notification from '../../Notification/Notification'
+import ErrorNotificationContext from '../../context/ErrorNotificationContext'
 
 export default function PopUp({ active, setActive }) {
   const [value, setValue] = useState('')
 
-  const { colData, setColData } = useContext(BoardContext)
+  const { setActiveErr, setError } = useContext(ErrorNotificationContext)
+  const { saveCol } = useContext(BoardContext)
+
   const input = useRef()
   useEffect(() => {
     input.current.focus()
   }, [active])
-
-  function save() {
-    axios
-      .post(
-        `${API_BASE_URL}/columns`,
-        {
-          title: value,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        },
-      )
-      .then((res) => {
-        const state = produce(colData, (draft) => {
-          draft.push({ id: res.data.id, title: res.data.title, tasks: [] })
-        })
-        setColData(state)
-        setValue('')
-        setActive(false)
-      })
-      .catch((err) => {
-        console.error(err)
-        if (err.response.status === 400) {
-          alert('Enter the name')
-        } else {
-          alert('You have to login to use this option')
-        }
-      })
-  }
 
   return (
     <div
@@ -65,7 +35,13 @@ export default function PopUp({ active, setActive }) {
           />
         </div>
         <div className="buttons">
-          <button className="pop-up__button" value=" Save" onClick={save}>
+          <button
+            className="pop-up__button"
+            value=" Save"
+            onClick={() => {
+              saveCol(value, setValue, setActive, setError, setActiveErr)
+            }}
+          >
             <p className="p4">Save</p>
           </button>
           <button
@@ -79,6 +55,7 @@ export default function PopUp({ active, setActive }) {
           </button>
         </div>
       </section>
+      <Notification />
     </div>
   )
 }

@@ -8,5 +8,5 @@
 }
 
 .button-delete-column:hover {
-  color: #e00909;
+  color: var(--red);
 }

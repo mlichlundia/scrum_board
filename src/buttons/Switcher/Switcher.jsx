@@ -4,7 +4,6 @@ import ThemeContext from '../../context/themeContext'
 
 export default function Switcher() {
   const { theme, toggleTheme, checked } = useContext(ThemeContext)
-  console.log(checked)
   return (
     <div className="switch-wrapper">
       <p className="p5 switch__description">Night Mode</p>

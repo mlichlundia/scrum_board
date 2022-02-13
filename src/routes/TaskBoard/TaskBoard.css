@@ -39,6 +39,7 @@
   padding: 0.5rem 1rem;
   background: var(--white);
   outline: none;
+  background: var(--bg-sec);
 }
 .button-create-column {
   margin: 2.6875rem 1.5rem 0 0;
@@ -51,27 +52,22 @@
   overflow: auto;
 }
 .tasks::-webkit-scrollbar {
-  position: absolute;
-  right: 1rem;
-  margin: 10rem 0 0 -5rem;
-  margin: 2.6875rem 0 0;
-  width: 7px;
-  height: 90px;
+  width: 0.325rem;
   background: var(--gray100);
-  border-radius: 6px;
+  border-radius: 0.325rem;
 }
 
 .tasks::-webkit-scrollbar:horizontal {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  width: 90px;
-  height: 7px;
+  height: 0.325rem;
   background: var(--gray100);
-  border-radius: 6px;
+  border-radius: 0.325rem;
 }
 
 .tasks::-webkit-scrollbar-thumb {
   background-color: var(--gray300);
-  border-radius: 6px;
+  border-radius: 0.325rem;
+}
+
+.tasks::-webkit-scrollbar-corner {
+  background: var(--bg);
 }

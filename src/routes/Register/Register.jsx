@@ -1,18 +1,21 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import axios from 'axios'
 import './Register.css'
 import { API_BASE_URL } from '../../constants/api.const'
 import ThemeContext from '../../context/themeContext'
+import { useForm } from 'react-hook-form'
+import ErrorNotificationContext from '../../context/ErrorNotificationContext'
+import Notification from '../../Notification/Notification'
 
 export default function Registartion() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
+  const { register, handleSubmit } = useForm()
   const { theme } = useContext(ThemeContext)
+  const { setActiveErr, setError } = useContext(ErrorNotificationContext)
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  function onSubmit(data) {
+    const username = data.username
+    const password = data.password
     axios
       .post(`${API_BASE_URL}/auth/signup`, {
         username,
@@ -20,18 +23,13 @@ export default function Registartion() {
       })
       .then((res) => {
         console.log(res)
-        alert('Все хорошо')
+        alert('navigate to login')
       })
       .catch((err) => {
         console.error(err)
-        alert('Все плохо')
+        setError(err.response.status)
+        setActiveErr(err === '' ? false : true)
       })
-  }
-
-  function handleChange(e) {
-    e.target.name === 'username'
-      ? setUsername(e.target.value)
-      : setPassword(e.target.value)
   }
 
   return (
@@ -40,30 +38,28 @@ export default function Registartion() {
         method="post"
         autoComplete="on"
         className="form"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="auth-header">Registration</h1>
         <section>
           <div className="form-field username-form-field">
             <label htmlFor="username"></label>
             <input
+              {...register('username', { required: true })}
               className="input"
               name="username"
               type="text"
               placeholder="Username"
-              onChange={handleChange}
-              required
             ></input>
           </div>
           <div className="form-field password-form-field">
             <label htmlFor="password"></label>
             <input
+              {...register('password', { required: true })}
               className="input"
               name="password"
               type="password"
               placeholder="Password"
-              onChange={handleChange}
-              required
             ></input>
           </div>
         </section>
@@ -77,6 +73,7 @@ export default function Registartion() {
           </button>
         </section>
       </form>
+      <Notification />
     </main>
   )
 }

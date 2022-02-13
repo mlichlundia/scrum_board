@@ -14,7 +14,7 @@ main {
 nav {
   position: absolute;
   height: calc(100% - 1rem * 2);
-  width: 20rem;
+  max-width: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

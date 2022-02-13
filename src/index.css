@@ -14,6 +14,7 @@ html {
   --blue800: #055cdf;
   --blue900: #0552c7;
   --blue100: rgb(6%, 42%, 95%, 10%);
+  --red: #e00909;
   --bg-sec: #ffffff;
   --gray100-50: rgb(89%, 91%, 93%, 50%);
   --gray100: #e4e8ed;
@@ -42,7 +43,7 @@ html {
   --black-dark: #ebebeb;
   --pop-up-color-dark: 0px 0px 2.25rem rgb(18%, 19%, 20%, 50%);
   --menu-shadow-dark: 0px 0px 2.25rem rgb(0%, 0%, 0%, 16%);
-  --card-shadow-dark: 0px 0.3125rem 0.75rem rgb(0%, 0%, 0%, 4%);
+  --card-shadow-dark: 0px 0.3125rem 0.75rem rgb(0%, 0%, 0%, 6%);
   --card-hover-dark: 0px 0.3125rem 0.75rem rgb(0%, 0%, 0%, 16%);
   --tooltip-shadow-dark: 0px 0px 0.875rem rgb(0%, 0%, 0%, 43%);
   --pop-up-dark: 0px 0px 1.875rem rgb(0%, 0%, 0%, 3%);

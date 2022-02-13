@@ -23,3 +23,14 @@
   border: 1px solid var(--gray200);
   padding: 0.5rem 0.75rem;
 }
+
+.pop-up__textarea::-webkit-scrollbar {
+  width: 0.325rem;
+  background: var(--gray100);
+  border-radius: 0.325rem;
+}
+
+.pop-up__textarea::-webkit-scrollbar-thumb {
+  background-color: var(--gray300);
+  border-radius: 0.325rem;
+}

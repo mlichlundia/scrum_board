@@ -1,19 +1,22 @@
 import axios from 'axios'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { API_BASE_URL } from '../../constants/api.const'
 import ThemeContext from '../../context/themeContext'
+import { useForm } from 'react-hook-form'
+import ErrorNotificationContext from '../../context/ErrorNotificationContext'
+import Notification from '../../Notification/Notification'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
+  const { register, handleSubmit } = useForm()
   const { theme } = useContext(ThemeContext)
+  const { setActiveErr, setError } = useContext(ErrorNotificationContext)
 
   let navigate = useNavigate()
-  function handleSubmit(e) {
-    e.preventDefault()
+  function onSubmit(data) {
+    const username = data.username
+    const password = data.password
     axios
       .post(`${API_BASE_URL}/auth/login`, {
         username,
@@ -25,46 +28,39 @@ export default function Login() {
         navigate('/task-board')
       })
       .catch((err) => {
-        if (err === 401) alert('This user doesn`t exist')
-        console.log(err)
+        console.error(err)
+        setError(err.response.status)
+        setActiveErr(err === '' ? false : true)
       })
   }
-  function handleChange(e) {
-    e.target.name === 'username'
-      ? setUsername(e.target.value)
-      : setPassword(e.target.value)
-  }
-
   return (
     <main>
       <form
         method="post"
         autoComplete="on"
         className="form"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="auth-header">Login</h1>
         <section>
           <div>
             <label htmlFor="username"></label>
             <input
+              {...register('username', { required: true })}
               className="input"
               name="username"
               type="text"
               placeholder="Username"
-              onChange={handleChange}
-              required
             ></input>
           </div>
           <div>
             <label htmlFor="password"></label>
             <input
+              {...register('password', { required: true })}
               className="input"
               name="password"
               type="password"
               placeholder="Password"
-              onChange={handleChange}
-              required
             ></input>
           </div>
         </section>
@@ -78,6 +74,7 @@ export default function Login() {
           </button>
         </section>
       </form>
+      <Notification />
     </main>
   )
 }

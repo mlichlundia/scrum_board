@@ -1,6 +1,7 @@
 import './PopUpTask.css'
 import { useEffect, useRef, useState, useContext } from 'react'
 import BoardContext from './context/boardContext'
+import ErrorNotificationContext from '../../context/ErrorNotificationContext'
 
 export default function PopUpTask({
   isNew,
@@ -16,6 +17,8 @@ export default function PopUpTask({
   const [editDescription, setEditDescription] = useState('')
 
   const { colData, setColData } = useContext(BoardContext)
+  const { setActiveErr, setError } = useContext(ErrorNotificationContext)
+
   const column = colData.find((col) => col.id === columnId)
   const columnIndex = colData.indexOf(column)
   const input = useRef()
@@ -27,6 +30,22 @@ export default function PopUpTask({
     setEditDescription(task?.description)
   }, [active, task])
 
+  const funcData = {
+    title,
+    setTitle,
+    description,
+    setDescription,
+    columnId,
+    colData,
+    setColData,
+    columnIndex,
+    setActive,
+    task,
+    editTitle,
+    setEditTitle,
+    editDescription,
+    setEditDescription,
+  }
   return (
     <div
       className={active ? 'pop-up open' : 'pop-up'}
@@ -74,24 +93,9 @@ export default function PopUpTask({
         <div className="buttons">
           <button
             className="pop-up__button"
-            onClick={() =>
-              func(
-                title,
-                setTitle,
-                description,
-                setDescription,
-                columnId,
-                colData,
-                setColData,
-                columnIndex,
-                setActive,
-                task,
-                editTitle,
-                setEditTitle,
-                editDescription,
-                setEditDescription,
-              )
-            }
+            onClick={() => {
+              func(funcData, setError, setActiveErr)
+            }}
           >
             <p className="p4">Save</p>
           </button>

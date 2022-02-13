@@ -1,17 +1,18 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import './Column.css'
 import CreateTask from '../../buttons/CreateTask/CreateTask.jsx'
 import DeleteColumn from '../../buttons/DeleteColumn/DeleteColumn.jsx'
 import Task from './Task'
 import PopUpTask from './PopUpTask'
-import addNew from './SaveButtonFuncs/addNew'
-import edit from './SaveButtonFuncs/update'
+import BoardContext from './context/boardContext'
 
 export default function Column({ title, id, tasks }) {
   const [isPopUpTaskActive, setIsPopUpTaskActive] = useState(false)
   const [isPopUpEditActive, setIsPopUpEditActive] = useState(false)
   const [currentTask, setCurrentTask] = useState('')
+
+  const { saveTask, editTask } = useContext(BoardContext)
 
   return (
     <div className="column">
@@ -40,7 +41,6 @@ export default function Column({ title, id, tasks }) {
                         <Task
                           task={task}
                           columnId={id}
-                          index={index}
                           setIsPopUpEditActive={setIsPopUpEditActive}
                           setCurrentTask={setCurrentTask}
                         />
@@ -59,7 +59,7 @@ export default function Column({ title, id, tasks }) {
           setActive={setIsPopUpTaskActive}
           columnId={id}
           tasks={tasks}
-          func={addNew}
+          func={saveTask}
         />
         <PopUpTask
           isNew={false}
@@ -67,7 +67,7 @@ export default function Column({ title, id, tasks }) {
           setActive={setIsPopUpEditActive}
           columnId={id}
           task={currentTask}
-          func={edit}
+          func={editTask}
         />
       </div>
 
