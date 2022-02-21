@@ -7,12 +7,14 @@ import ThemeContext from '../../context/themeContext'
 import { useForm } from 'react-hook-form'
 import ErrorNotificationContext from '../../context/ErrorNotificationContext'
 import Notification from '../../Notification/Notification'
+import { useNavigate } from 'react-router-dom'
 
 export default function Registartion() {
   const { register, handleSubmit } = useForm()
   const { theme } = useContext(ThemeContext)
   const { setActiveErr, setError } = useContext(ErrorNotificationContext)
 
+  let navigate = useNavigate()
   function onSubmit(data) {
     const username = data.username
     const password = data.password
@@ -23,7 +25,7 @@ export default function Registartion() {
       })
       .then((res) => {
         console.log(res)
-        alert('navigate to login')
+        navigate('/login')
       })
       .catch((err) => {
         console.error(err)
@@ -40,7 +42,7 @@ export default function Registartion() {
         className="form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="auth-header">Registration</h1>
+        <h1 className="auth-header">Sign Up</h1>
         <section>
           <div className="form-field username-form-field">
             <label htmlFor="username"></label>
