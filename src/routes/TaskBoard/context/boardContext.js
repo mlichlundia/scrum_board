@@ -9,10 +9,6 @@ export function BoardProvider({ children }) {
   useEffect(() => {
     axios.get(`${API_BASE_URL}/board`).then((res) => {
       let columns = res.data.columns
-      let tasks = res.data.tasks
-      columns.forEach((column) => {
-        column.tasks = tasks.filter((task) => task.columnId === column.id)
-      })
       setColData(columns)
     })
   }, [])
