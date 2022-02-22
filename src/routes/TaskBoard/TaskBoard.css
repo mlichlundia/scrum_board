@@ -1,13 +1,23 @@
 .main-content {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+  height: 100%;
 }
 
 .tasks {
   display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
 }
 
 .column {
-  min-width: calc(25% - 1.5rem);
+  width: calc(25% - 1.5rem);
+  height: 100%;
   margin: 0 1.5rem 0 0;
 }
 
@@ -19,6 +29,8 @@
 }
 
 .header__icon {
+  width: 2rem;
+  height: 2rem;
   margin: 0 1.25rem 0 0;
 }
 
@@ -45,12 +57,6 @@
   margin: 2.6875rem 1.5rem 0 0;
 }
 
-.tasks {
-  position: relative;
-  height: 50rem;
-  width: 100%;
-  overflow: auto;
-}
 .tasks::-webkit-scrollbar {
   width: 0.325rem;
   background: var(--gray100);
@@ -70,4 +76,39 @@
 
 .tasks::-webkit-scrollbar-corner {
   background: var(--bg);
+}
+
+@media screen and (max-width: 1024px) {
+  .column {
+    min-width: calc(50% - 1.5rem);
+  }
+  .header__input {
+    min-width: 16rem;
+  }
+  .header {
+    margin: -0.5rem 0 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .column {
+    min-width: calc(50% - 1.5rem);
+  }
+  .header__input {
+    min-width: 16rem;
+  }
+  .header {
+    margin: -0.5rem 0 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .column {
+    min-width: calc(85% - 1.5rem);
+  }
+
+  .header__input {
+    min-width: 10rem;
+    font-size: 1.5rem;
+  }
 }

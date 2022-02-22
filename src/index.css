@@ -5,7 +5,8 @@
 }
 
 html {
-  font-size: 16px;
+  /* font-size: 1.111111111111111111111vw; */
+  font-size: 0.833333333333333333333333vw;
 
   --radius-8: 0.5rem;
   --radius-6: 0.375rem;
@@ -119,7 +120,6 @@ h5 {
 
 p {
   margin: 0;
-  font-size: 1rem;
   line-height: 150%;
   font-weight: 400;
 }
@@ -169,4 +169,63 @@ input {
 
 input {
   cursor: text;
+}
+
+span {
+  padding: 0;
+}
+
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 1.1111111111111111111111111vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 1.5625vw;
+  }
+  .p5 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 2.083333333333vw;
+  }
+  h4 {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .p5 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 2.5vw;
+  }
+  .p5 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 3.333333333333333vw;
+  }
+  .p5 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 5vw;
+  }
+  .p5 {
+    font-size: 0.9rem;
+  }
 }

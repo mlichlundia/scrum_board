@@ -6,6 +6,8 @@
   border-radius: var(--radius-8);
   color: var(--gray400);
   background: var(--gray100-50);
+  display: flex;
+  align-items: center;
 }
 
 .button-create-column:hover {

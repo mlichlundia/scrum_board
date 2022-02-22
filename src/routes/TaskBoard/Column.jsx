@@ -17,7 +17,7 @@ export default function Column({ title, id, tasks }) {
   return (
     <div className="column">
       <h3 className="column__header">
-        <DeleteColumn className="button-delete" id={id} />
+        <DeleteColumn id={id} />
         {title}
       </h3>
       <div className="colunm-content">

@@ -8,7 +8,7 @@ export default function PageNotFound() {
   return (
     <main className="page-not-found">
       <Svg name="not-found" theme={theme} />
-      <h1 className="header">Hmm...</h1>
+      <h1 className="page-not-found__header">Hmm...</h1>
       <h2 className="text">Congratulations, you broke the Internet.</h2>
     </main>
   )

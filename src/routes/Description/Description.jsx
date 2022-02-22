@@ -2,8 +2,8 @@ import './Description.css'
 
 export default function Description() {
   return (
-    <main className="main-content">
-      <h1 className="header">It is Description</h1>
+    <main className="description__main-content">
+      <h1 className="description__header header">It is Description</h1>
       <p className="text">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever

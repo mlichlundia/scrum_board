@@ -1,5 +1,6 @@
 .column {
   display: block;
+  height: 100%;
 }
 .column__header {
   position: sticky;
@@ -10,6 +11,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  vertical-align: middle;
 }
 
 .droppable {

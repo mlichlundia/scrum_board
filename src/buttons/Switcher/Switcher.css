@@ -3,23 +3,26 @@
   align-items: center;
 }
 
-.switch__description {
-  font-size: 0.75rem;
-  line-height: 150%;
-  color: var(--gray300);
-  margin-right: 0.75rem;
-}
-
 .switch-wrapper .switch {
-  width: 2.875rem;
-  height: 1.5rem;
+  width: 3.1rem;
+  height: 1.55rem;
   border-radius: 0.75rem;
   background: var(--gray200);
   position: relative;
   cursor: pointer;
-  padding: 0.125rem;
+  padding: 0.2rem;
 }
-
+.switch::before {
+  content: 'Night Mode';
+  position: absolute;
+  right: 3.625rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 150%;
+  font-weight: 400;
+  white-space: nowrap;
+  color: var(--gray300);
+}
 .checkbox {
   opacity: 0;
   position: absolute;
@@ -34,8 +37,8 @@
 
 .checkbox + .switch__ball {
   display: block;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: calc(50% - 0.2rem);
+  height: 100%;
   background: var(--bg-sec);
   border-radius: 50%;
   transition: 0.25s;
@@ -48,9 +51,23 @@
 
 /* Switcher active */
 .checkbox:checked + .switch__ball {
-  transform: translateX(1.375rem);
+  transform: translateX(calc(100% + 0.3rem));
 }
 
 .checkbox:checked + .switch {
   background: var(---blue700);
+}
+
+@media screen and (max-width: 480px) {
+  .switch::before {
+    right: 0;
+    left: 0;
+    top: 2rem;
+    margin: 0;
+    font-size: 0.6rem;
+    line-height: 150%;
+    font-weight: 400;
+    white-space: nowrap;
+    color: var(--gray300);
+  }
 }

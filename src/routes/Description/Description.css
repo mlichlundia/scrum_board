@@ -1,7 +1,11 @@
-.main-content {
+.description__main-content {
   display: block;
 }
-
+.description__header {
+  margin: 1rem 0 1rem;
+  padding: 0;
+  color: var(--black);
+}
 .text {
   color: var(--gray500);
 }

@@ -15,3 +15,9 @@
 .addLink__icon {
   margin: 0 0.75rem 0 0;
 }
+
+@media screen and (max-width: 768px) {
+  .addLink {
+    display: none;
+  }
+}

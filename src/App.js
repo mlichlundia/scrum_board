@@ -1,6 +1,6 @@
 import './App.css'
 import { useContext } from 'react'
-import { NavLink, Link, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import AddShortcut from './buttons/AddShortcut/AddShortcut'
 import Switcher from './buttons/Switcher/Switcher'
 import ThemeContext from './context/themeContext'
@@ -15,20 +15,29 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <div className="wrapper">
+        <Svg name="logo" />
         <div className="switcher">
           <Switcher />
         </div>
-
+        <NavLink
+          to="/register"
+          className={({ isActive }) =>
+            isActive ? 'active-route sign-up' : 'inactive-route sign-up'
+          }
+        >
+          <h4>Sign Up</h4>
+        </NavLink>
         <nav>
           <div className="main-menu-section">
-            <Svg name="logo" />
             <ul className="menu">
               {menuPoints.map(({ title, direction, svg }) => (
                 <li className="menu__point" key={svg}>
                   <NavLink
                     to={direction}
                     className={({ isActive }) =>
-                      isActive ? 'active-route' : 'inactive-route'
+                      isActive
+                        ? 'menu__active-route route'
+                        : 'inactive-route route'
                     }
                   >
                     <Svg name={svg} />
@@ -40,21 +49,18 @@ function App() {
             <hr />
             <AddShortcut />
           </div>
-          <div className="auth">
-            <p className="p3">
-              To use all functions of the App you have to
-              <span className="auth__route">
-                <Link to="/register" className="auth__route">
-                  Register
-                </Link>
-              </span>
-              or
-              <span className="auth__route">
-                <Link to="/login" className="auth__route">
-                  Login
-                </Link>
-              </span>
-            </p>
+          <div className="login">
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? 'active-route login__route'
+                  : 'inactive-route login__route'
+              }
+            >
+              <Svg name="login" />
+              <h4>Login</h4>
+            </NavLink>
           </div>
         </nav>
         <Outlet />
