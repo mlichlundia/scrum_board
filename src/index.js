@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import TaskBoard from './routes/TaskBoard/TaskBoard'
 import Description from './routes/Description/Description'
@@ -17,7 +17,7 @@ ReactDOM.render(
   <ErrorNotificationContextProvider>
     <ThemeContextProvider>
       <BoardProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="task-board" element={<TaskBoard />}></Route>
@@ -27,7 +27,7 @@ ReactDOM.render(
               <Route path="*" element={<PageNotFound />}></Route>
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </BoardProvider>
     </ThemeContextProvider>
   </ErrorNotificationContextProvider>,
