@@ -13,7 +13,7 @@ export default function Notification() {
 
   useEffect(() => {
     if (error === 400) {
-      setErrorTitle('Wrong Username or Password')
+      setErrorTitle('Incorrect Data')
       setErrorDescription('It seems you enter incorrect data. Please try again')
     } else if (error === 401) {
       setErrorTitle('You are not authorized or user doesn`t exist')
