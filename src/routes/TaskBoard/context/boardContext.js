@@ -48,11 +48,10 @@ export function BoardProvider({ children }) {
 
     request()
 
-    console.log(colData)
     async function request() {
-      if (destination.droppableId !== source.droppableId) {
-        await axios
-          .put(
+      try {
+        if (destination.droppableId !== source.droppableId) {
+          await axios.put(
             `${API_BASE_URL}/tasks`,
             {
               id: taskCopy.id,
@@ -66,36 +65,24 @@ export function BoardProvider({ children }) {
               },
             },
           )
-          .then((res) => console.log(res))
-          .catch((err) => {
-            console.error(err)
-            setError(err.response.status)
-            setActiveErr(true)
-          })
-      }
-      console.log(colData)
+        }
 
-      setTimeout(() => {
-        axios
-          .put(
-            `${API_BASE_URL}/tasks/reorder`,
-            {
-              ids: ids,
+        await axios.put(
+          `${API_BASE_URL}/tasks/reorder`,
+          {
+            ids: ids,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('token')}`,
             },
-            {
-              headers: {
-                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-              },
-            },
-          )
-          .then((res) => console.log(res))
-          .catch((err) => {
-            console.error(err)
-            setError(err.response.status)
-            setActiveErr(true)
-          })
-      }, 1)
-      console.log(colData)
+          },
+        )
+      } catch (err) {
+        console.error(err)
+        setError(err.response.status)
+        setActiveErr(true)
+      }
     }
 
     if (!isAuthorized) {
