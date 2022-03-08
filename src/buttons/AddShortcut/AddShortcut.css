@@ -1,3 +1,8 @@
+.add-shortcut__wrapper {
+  position: relative;
+  margin: 0;
+}
+
 .addLink {
   display: flex;
   align-items: center;
@@ -16,8 +21,122 @@
   margin: 0 0.75rem 0 0;
 }
 
+.add-shortcut__input {
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 130%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--gray100-50);
+  border-radius: var(--radius-6);
+  outline: none;
+  color: var(--text);
+  background: var(--bg-sec);
+}
+.add-shortcut__input:focus {
+  border: 1px solid var(--gray200);
+}
+.add-shortcut__input_hidden {
+  display: none;
+}
+
+.add-shortcuts__link-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.add-shortcuts__link {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0.5rem;
+}
+
+.add-shortcuts__delete {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--gray300);
+  cursor: pointer;
+}
+
+.add-shortcuts__delete:hover {
+  color: var(--red);
+}
+
+.add-shortcuts__link-adress {
+  position: relative;
+  font-size: 0.875rem;
+  line-height: 150%;
+  margin: 0 0 0 0.75rem;
+  padding: 0.25rem 0 0.25rem;
+  text-decoration: none;
+  color: var(--gray400);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.add-shortcuts__link-adress::before {
+  position: absolute;
+  content: '';
+  width: 0rem;
+  height: 0.125rem;
+  background: var(--blue700);
+  border-radius: 0.125rem;
+  bottom: 0;
+  transition: 0.5s;
+}
+
+.add-shortcuts__link-adress:hover::before {
+  width: 1.25rem;
+}
+
+.add-shortcuts__link-adress:hover {
+  color: var(--blue700);
+}
+
+.warnMessage {
+  display: flex;
+  align-items: center;
+  color: rgb(226, 166, 1);
+  margin: 1.25rem 0 0;
+}
+
+.warnMessage__text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 0 0 0 0.75rem;
+}
+
+.warnMessage_hidden {
+  display: none;
+}
+
+.add-shortcuts__link-list::-webkit-scrollbar {
+  width: 0.325rem;
+  background: var(--gray100-50);
+  border-radius: 0.325rem;
+}
+
+.add-shortcuts__link-list::-webkit-scrollbar:horizontal {
+  height: 0.325rem;
+  background: var(--gray100-50);
+  border-radius: 0.325rem;
+}
+
+.add-shortcuts__link-list::-webkit-scrollbar-thumb {
+  background-color: var(--gray200);
+  border-radius: 0.325rem;
+}
+
+.add-shortcuts__link-list::-webkit-scrollbar-corner {
+  background: var(--bg);
+}
+
 @media screen and (max-width: 768px) {
-  .addLink {
+  .add-shortcut__wrapper {
     display: none;
   }
 }
