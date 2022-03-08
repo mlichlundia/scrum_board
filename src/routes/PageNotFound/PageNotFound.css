@@ -12,3 +12,12 @@
 .text {
   color: var(--gray300);
 }
+
+@media screen and (max-width: 480px) {
+  .not-found-pic {
+    transform: scale(0.8);
+  }
+  .page-not-found__header {
+    margin: 1rem 0 0.75rem;
+  }
+}
