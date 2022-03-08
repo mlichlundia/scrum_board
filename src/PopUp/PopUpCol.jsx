@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef, useContext } from 'react'
-import BoardContext from '../TaskBoard/context/boardContext'
+import BoardContext from '../routes/TaskBoard/context/boardContext'
 import './PopUp.css'
-import Notification from '../../Notification/Notification'
-import ErrorNotificationContext from '../../context/ErrorNotificationContext'
+import Notification from '../Notification/Notification'
+import ErrorNotificationContext from '../context/ErrorNotificationContext'
 
 export default function PopUp({ active, setActive }) {
   const [value, setValue] = useState('')

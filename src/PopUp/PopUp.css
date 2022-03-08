@@ -45,7 +45,6 @@
 
 .pop-up__input:focus {
   border: 1px solid var(--gray200);
-  padding: 0.5rem 0.75rem;
 }
 
 .pop-up__input::placeholder {
@@ -75,4 +74,14 @@
 
 .decline:hover {
   background: none;
+}
+
+@media screen and (max-width: 480px) {
+  .pop-up__content {
+    padding: 1rem;
+    width: 26rem;
+  }
+  .pop-up__input {
+    margin: 0 0 0.5rem;
+  }
 }

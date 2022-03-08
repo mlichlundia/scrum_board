@@ -1,7 +1,7 @@
 import './PopUpTask.css'
 import { useEffect, useRef, useState, useContext } from 'react'
-import BoardContext from './context/boardContext'
-import ErrorNotificationContext from '../../context/ErrorNotificationContext'
+import BoardContext from '../routes/TaskBoard/context/boardContext'
+import ErrorNotificationContext from '../context/ErrorNotificationContext'
 
 export default function PopUpTask({
   isNew,

@@ -34,3 +34,9 @@
   background-color: var(--gray300);
   border-radius: 0.325rem;
 }
+
+@media screen and (max-width: 480px) {
+  .pop-up__textarea {
+    margin: 0 0 0.5rem;
+  }
+}

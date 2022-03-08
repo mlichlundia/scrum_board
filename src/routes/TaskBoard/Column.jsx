@@ -4,7 +4,7 @@ import './Column.css'
 import CreateTask from '../../buttons/CreateTask/CreateTask.jsx'
 import DeleteColumn from '../../buttons/DeleteColumn/DeleteColumn.jsx'
 import Task from './Task'
-import PopUpTask from './PopUpTask'
+import PopUpTask from '../../PopUp/PopUpTask'
 import BoardContext from './context/boardContext'
 
 export default function Column({ title, id, tasks }) {
