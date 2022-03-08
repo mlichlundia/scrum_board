@@ -6,7 +6,6 @@ export default function Switcher() {
   const { theme, toggleTheme, checked } = useContext(ThemeContext)
   return (
     <div className="switch-wrapper">
-      {/* <p className="p5 switch__description">Night Mode</p> */}
       <div
         className="switch"
         style={theme === 'dark-theme' ? { background: 'var(--blue700)' } : {}}
