@@ -11,7 +11,7 @@
 
 .input {
   width: 19.75rem;
-  font-size: 0.875rem;
+  font-size: 16px;
   margin: 0 0 0.75rem;
   padding: 0.75rem 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -22,7 +22,7 @@
 }
 
 .input::placeholder {
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 400;
   color: var(--gray400);
 }
