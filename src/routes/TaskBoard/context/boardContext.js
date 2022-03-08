@@ -12,8 +12,12 @@ export function BoardProvider({ children }) {
       setColData(columns)
     })
   }, [])
-
-  function dragEnd({ destination, source }, setError, setActiveErr) {
+  function dragEnd(
+    { destination, source },
+    setError,
+    setActiveErr,
+    isAuthorized,
+  ) {
     if (!destination) {
       return
     }
@@ -42,46 +46,62 @@ export function BoardProvider({ children }) {
     })
     const ids = state[indexDestinationColumn].tasks.map((task) => task.id)
 
-    if (destination.droppableId !== source.droppableId) {
-      axios
-        .put(
-          `${API_BASE_URL}/tasks`,
-          {
-            id: taskCopy.id,
-            title: taskCopy.title,
-            description: taskCopy.description,
-            columnId: destinationColumn.id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    request()
+
+    console.log(colData)
+    async function request() {
+      if (destination.droppableId !== source.droppableId) {
+        await axios
+          .put(
+            `${API_BASE_URL}/tasks`,
+            {
+              id: taskCopy.id,
+              title: taskCopy.title,
+              description: taskCopy.description,
+              columnId: destinationColumn.id,
             },
-          },
-        )
-        .catch((err) => {
-          console.error(err)
-          setError(err.response.status)
-          setActiveErr(true)
-        })
+            {
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+              },
+            },
+          )
+          .then((res) => console.log(res))
+          .catch((err) => {
+            console.error(err)
+            setError(err.response.status)
+            setActiveErr(true)
+          })
+      }
+      console.log(colData)
+
+      setTimeout(() => {
+        axios
+          .put(
+            `${API_BASE_URL}/tasks/reorder`,
+            {
+              ids: ids,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+              },
+            },
+          )
+          .then((res) => console.log(res))
+          .catch((err) => {
+            console.error(err)
+            setError(err.response.status)
+            setActiveErr(true)
+          })
+      }, 1)
+      console.log(colData)
     }
 
-    axios
-      .put(
-        `${API_BASE_URL}/tasks/reorder`,
-        {
-          ids: ids,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        },
-      )
-      .catch((err) => {
-        console.error(err)
-        setError(err.response.status)
-        setActiveErr(true)
-      })
+    if (!isAuthorized) {
+      return
+    }
+
     setColData(state)
   }
 
