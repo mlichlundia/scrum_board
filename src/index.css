@@ -5,7 +5,6 @@
 }
 
 html {
-  /* font-size: 1.111111111111111111111vw; */
   font-size: 0.833333333333333333333333vw;
 
   --radius-8: 0.5rem;
@@ -215,15 +214,6 @@ span {
 @media screen and (max-width: 480px) {
   html {
     font-size: 3.333333333333333vw;
-  }
-  .p5 {
-    font-size: 0.9rem;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  html {
-    font-size: 5vw;
   }
   .p5 {
     font-size: 0.9rem;

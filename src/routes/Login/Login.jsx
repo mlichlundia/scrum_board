@@ -7,10 +7,12 @@ import ThemeContext from '../../context/themeContext'
 import { useForm } from 'react-hook-form'
 import ErrorNotificationContext from '../../context/ErrorNotificationContext'
 import Notification from '../../Notification/Notification'
+import IsAuthorizedContext from '../../context/IsAuthorizedContext'
 
 export default function Login() {
   const { register, handleSubmit } = useForm()
   const { theme } = useContext(ThemeContext)
+  const { setIsAuthorized } = useContext(IsAuthorizedContext)
   const { setActiveErr, setError } = useContext(ErrorNotificationContext)
 
   let navigate = useNavigate()
@@ -25,6 +27,7 @@ export default function Login() {
       .then((res) => {
         sessionStorage.setItem('token', res.data.access_token)
         console.log(sessionStorage.getItem('token'))
+        setIsAuthorized(true)
         navigate('/task-board')
       })
       .catch((err) => {

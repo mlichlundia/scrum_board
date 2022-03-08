@@ -3,11 +3,12 @@ import { useState, useEffect, useRef, useContext } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from './Column'
 import CreateColumn from '../../buttons/CreateColumn/CreateColumn'
-import PopUpCol from './PopUpCol'
+import PopUpCol from '../../PopUp/PopUpCol'
 import BoardContext from './context/boardContext'
 import Svg from '../../svgs/Svg'
 import Notification from '../../Notification/Notification'
 import ErrorNotificationContext from '../../context/ErrorNotificationContext'
+import IsAuthorizedContext from '../../context/IsAuthorizedContext'
 
 export default function TaskBoard() {
   const [title, setTitle] = useState('Project Name')
@@ -15,6 +16,7 @@ export default function TaskBoard() {
 
   const { colData, dragEnd } = useContext(BoardContext)
   const { setActiveErr, setError } = useContext(ErrorNotificationContext)
+  const { isAuthorized } = useContext(IsAuthorizedContext)
 
   useEffect(() => {
     const title = localStorage.getItem('title') || ''
@@ -49,7 +51,7 @@ export default function TaskBoard() {
       <section className="tasks">
         <DragDropContext
           onDragEnd={(res) => {
-            dragEnd(res, setError, setActiveErr)
+            dragEnd(res, setError, setActiveErr, isAuthorized)
           }}
         >
           {colData.map((col) => (

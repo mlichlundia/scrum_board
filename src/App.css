@@ -84,6 +84,10 @@ hr {
   top: 3rem;
   text-decoration: none;
 }
+.login {
+  position: absolute;
+  bottom: 2rem;
+}
 .login__route {
   display: flex;
   align-items: center;
@@ -213,6 +217,11 @@ hr {
   .switcher {
     right: 1.5rem;
     top: 1.5rem;
+  }
+
+  .login {
+    position: static;
+    bottom: auto;
   }
 }
 
