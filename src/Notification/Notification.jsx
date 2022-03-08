@@ -15,7 +15,7 @@ export default function Notification() {
     if (error === 400) {
       setErrorTitle('Incorrect Data')
       setErrorDescription(
-        'It seems you enter incorrect data. Your credentials must be more than 2 characters',
+        'It seems you enter incorrect data. Fill input fields with more than 2 characters',
       )
     } else if (error === 401) {
       setErrorTitle('You are not authorized or user doesn`t exist')
