@@ -35,6 +35,12 @@
   border-radius: 0.325rem;
 }
 
+@media screen and (max-width: 992px) {
+  .pop-up__textarea {
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .pop-up__textarea {
     margin: 0 0 0.5rem;
