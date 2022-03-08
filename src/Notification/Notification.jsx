@@ -20,6 +20,11 @@ export default function Notification() {
       setErrorDescription(
         'Please log in to get access to all featires of the application',
       )
+    } else if (error === 406) {
+      setErrorTitle('It seems you are already signed up')
+      setErrorDescription(
+        'Please enter new credentials or log in with existing ones',
+      )
     } else {
       setErrorTitle('Something went wrong')
       setErrorDescription('Try to reload the app or contact support')
