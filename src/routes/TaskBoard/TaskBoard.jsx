@@ -19,7 +19,7 @@ export default function TaskBoard() {
   const { isAuthorized } = useContext(IsAuthorizedContext)
 
   useEffect(() => {
-    const title = localStorage.getItem('title') || ''
+    const title = localStorage.getItem('title')
     setTitle(JSON.parse(title))
   }, [])
 
