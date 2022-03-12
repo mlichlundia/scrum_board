@@ -17,7 +17,7 @@ export default function AddShortcut() {
   }, [])
 
   useEffect(() => {
-    if (shortcuts.length > 10) {
+    if (shortcuts && shortcuts.length > 10) {
       setLimitMessage(true)
       return
     }
@@ -91,24 +91,25 @@ export default function AddShortcut() {
       </button>
 
       <ul className="add-shortcuts__link-list">
-        {shortcuts.map((shortcut) => (
-          <li key={shortcut.id} className="add-shortcuts__link">
-            <button
-              className="add-shortcuts__delete"
-              onClick={() => deleteLink(shortcut.id)}
-            >
-              <Svg name="delete-link" />
-            </button>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={shortcut.link}
-              className="add-shortcuts__link-adress"
-            >
-              {shortcut.title}
-            </a>
-          </li>
-        ))}
+        {shortcuts &&
+          shortcuts.map((shortcut) => (
+            <li key={shortcut.id} className="add-shortcuts__link">
+              <button
+                className="add-shortcuts__delete"
+                onClick={() => deleteLink(shortcut.id)}
+              >
+                <Svg name="delete-link" />
+              </button>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={shortcut.link}
+                className="add-shortcuts__link-adress"
+              >
+                {shortcut.title}
+              </a>
+            </li>
+          ))}
       </ul>
       <input
         ref={input}
